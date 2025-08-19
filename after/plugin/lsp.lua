@@ -1,23 +1,20 @@
 local lspconfig = require("lspconfig")
 
 -- Lua
-lspconfig.lua_ls.setup {
-  settings = {
-    Lua = {
-      diagnostics = { globals = { "vim" } },
-      workspace = { checkThirdParty = false },
-    },
-  },
-}
-
-
-
+lspconfig.lua_ls.setup({
+	settings = {
+		Lua = {
+			diagnostics = { globals = { "vim" } },
+			workspace = { checkThirdParty = false },
+		},
+	},
+})
 
 -- JavaScript / TypeScript
-lspconfig.ts_ls.setup {}
+lspconfig.ts_ls.setup({})
 
 -- Python
-lspconfig.pyright.setup {}
+lspconfig.pyright.setup({})
 
 -- Java
-lspconfig.jdtls.setup {}
+lspconfig.jdtls.setup({})
