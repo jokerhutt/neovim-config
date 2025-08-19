@@ -18,6 +18,21 @@ use { 'rose-pine/neovim', as = "rose-pine" }
         'nvim-treesitter/nvim-treesitter',
 	{run = ':TSUpdate'}
     )
+
+use {
+  'akinsho/toggleterm.nvim',
+  tag = '*',
+  config = function()
+    require("toggleterm").setup{
+      size = 15,
+      open_mapping = [[<C-\>]], -- ctrl+\ to toggle
+      shade_terminals = true,
+      direction = "horizontal", -- bottom split
+    }
+  end
+}
+
+
 use ('nvim-treesitter/playground')
 use ('theprimeagen/harpoon')
 

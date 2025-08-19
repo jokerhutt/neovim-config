@@ -10,6 +10,9 @@ lspconfig.lua_ls.setup {
   },
 }
 
+
+
+
 -- JavaScript / TypeScript
 lspconfig.ts_ls.setup {}
 
