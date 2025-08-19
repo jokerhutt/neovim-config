@@ -1,9 +1,2 @@
 require("jokerhut.remap")
-print("hello from david")
-~
-~
-~
-~
-~
-~
-~
+require("jokerhut.packer")
