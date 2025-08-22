@@ -11,6 +11,15 @@ vim.keymap.set("v", "<leader>p", '"+p')
 
 vim.keymap.set(
 	"n",
+	"<leader>c",
+	"<cmd>CompilerOpen<cr>",
+	{ noremap = true, silent = true, desc = "Open compiler menu" }
+)
+
+vim.keymap.set("n", "<leader>r", "<cmd>CompilerRedo<cr>", { noremap = true, silent = true, desc = "Redo last compile" })
+
+vim.keymap.set(
+	"n",
 	"<leader>cr",
 	"<cmd>CompilerStop<cr>" .. "<cmd>CompilerRedo<cr>" .. "<cmd>CompilerToggleResults<cr>",
 	{ noremap = true, silent = true, desc = "Compile, run, and show results" }
