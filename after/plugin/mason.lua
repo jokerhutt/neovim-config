@@ -5,5 +5,7 @@ require("mason-lspconfig").setup({
 		"ts_ls", -- JavaScript / TypeScript (was tsserver)
 		"jdtls", -- Java
 		"pyright", -- Python
+		"bashls", -- Bash
+		"clangd",
 	},
 })

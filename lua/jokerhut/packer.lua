@@ -39,6 +39,7 @@ return require("packer").startup(function(use)
 	use({
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
+		requires = { "nvim-lua/plenary.nvim" },
 	})
 	-- Undo Tree
 	use("mbbill/undotree")
@@ -65,5 +66,41 @@ return require("packer").startup(function(use)
 			"L3MON4D3/LuaSnip", -- snippet engine
 			"saadparwaiz1/cmp_luasnip", -- snippet completions
 		},
+	})
+
+	-- Formatters/linters via null-ls
+	use("jay-babu/mason-null-ls.nvim")
+	use("nvimtools/none-ls.nvim") -- (null-ls)
+
+	-- Ensures External Tools install
+	use("WhoIsSethDaniel/mason-tool-installer.nvim")
+
+	-- Auto Compiler Stuff
+	use({
+		"Zeioth/compiler.nvim",
+		cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
+		requires = {
+			"stevearc/overseer.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+		config = function()
+			require("compiler").setup({})
+		end,
+	})
+
+	use({
+		"stevearc/overseer.nvim",
+		commit = "6271cab7ccc4ca840faa93f54440ffae3a3918bd",
+		cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
+		config = function()
+			require("overseer").setup({
+				task_list = {
+					direction = "bottom",
+					min_height = 25,
+					max_height = 25,
+					default_detail = 1,
+				},
+			})
+		end,
 	})
 end)

@@ -18,3 +18,6 @@ lspconfig.pyright.setup({})
 
 -- Java
 lspconfig.jdtls.setup({})
+
+-- C /C++
+lspconfig.clangd.setup({})

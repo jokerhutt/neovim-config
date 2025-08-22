@@ -10,7 +10,12 @@ if ok_bridge then
 			"prettier", -- JS/TS/CSS/HTML/JSON/YAML/Markdown
 			"stylua", -- Lua
 			"google-java-format", -- Java
-			"autopep8", -- Python
+			"autopep8", -- Python,
+			"shellcheck",
+			"shfmt",
+			"clang-format",
+			"cppcheck",
+			"cpplint",
 		},
 		automatic_installation = true,
 	})
@@ -29,6 +34,10 @@ null_ls.setup({
 		null_ls.builtins.formatting.google_java_format,
 		-- Python
 		null_ls.builtins.formatting.autopep8,
+		null_ls.builtins.diagnostics.shellcheck, -- lints .sh / bash
+		null_ls.builtins.formatting.shfmt.with({ -- formats shell scripts
+			extra_args = { "-i", "4", "-ci" }, -- 4-space indent, indent switch cases
+		}),
 	},
 
 	-- PEREFER NULL LS WHEN FORMATTING
