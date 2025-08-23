@@ -105,8 +105,11 @@ _G.packer_plugins = {
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
   ["compiler.nvim"] = {
-    commands = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
+    commands = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo", "CompilerStop" },
     config = { "\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rcompiler\frequire\0" },
+    load_after = {
+      ["overseer.nvim"] = true
+    },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -143,6 +146,14 @@ _G.packer_plugins = {
     path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/start/none-ls.nvim",
     url = "https://github.com/nvimtools/none-ls.nvim"
   },
+  ["nvim-autopairs"] = {
+    config = { "\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/opt/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -159,8 +170,8 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["overseer.nvim"] = {
-    commands = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
-    config = { "\27LJ\2\n™\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\14task_list\1\0\1\14task_list\0\1\0\4\15max_height\3\25\14direction\vbottom\15min_height\3\25\19default_detail\3\1\nsetup\roverseer\frequire\0" },
+    after = { "compiler.nvim" },
+    config = { "\27LJ\2\n™\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\14task_list\1\0\1\14task_list\0\1\0\4\15min_height\3\25\19default_detail\3\1\15max_height\3\25\14direction\vbottom\nsetup\roverseer\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -193,7 +204,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["toggleterm.nvim"] = {
-    config = { "\27LJ\2\n\127\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\4\20shade_terminals\2\14direction\15horizontal\17open_mapping\n<C-\\>\tsize\3\15\nsetup\15toggleterm\frequire\0" },
+    config = { "\27LJ\2\n\127\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\4\17open_mapping\n<C-\\>\tsize\3\15\20shade_terminals\2\14direction\15horizontal\nsetup\15toggleterm\frequire\0" },
     loaded = true,
     path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
@@ -216,36 +227,78 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+local module_lazy_loads = {
+  ["^overseer"] = "overseer.nvim"
+}
+local lazy_load_called = {['packer.load'] = true}
+local function lazy_load_module(module_name)
+  local to_load = {}
+  if lazy_load_called[module_name] then return nil end
+  lazy_load_called[module_name] = true
+  for module_pat, plugin_name in pairs(module_lazy_loads) do
+    if not _G.packer_plugins[plugin_name].loaded and string.match(module_name, module_pat) then
+      to_load[#to_load + 1] = plugin_name
+    end
+  end
+
+  if #to_load > 0 then
+    require('packer.load')(to_load, {module = module_name}, _G.packer_plugins)
+    local loaded_mod = package.loaded[module_name]
+    if loaded_mod then
+      return function(modname) return loaded_mod end
+    end
+  end
+end
+
+if not vim.g.packer_custom_loader_enabled then
+  table.insert(package.loaders, 1, lazy_load_module)
+  vim.g.packer_custom_loader_enabled = true
+end
+
 -- Config for: toggleterm.nvim
 time([[Config for toggleterm.nvim]], true)
-try_loadstring("\27LJ\2\n\127\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\4\20shade_terminals\2\14direction\15horizontal\17open_mapping\n<C-\\>\tsize\3\15\nsetup\15toggleterm\frequire\0", "config", "toggleterm.nvim")
+try_loadstring("\27LJ\2\n\127\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\4\17open_mapping\n<C-\\>\tsize\3\15\20shade_terminals\2\14direction\15horizontal\nsetup\15toggleterm\frequire\0", "config", "toggleterm.nvim")
 time([[Config for toggleterm.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
 pcall(vim.api.nvim_create_user_command, 'CompilerRedo', function(cmdargs)
-          require('packer.load')({'compiler.nvim', 'overseer.nvim'}, { cmd = 'CompilerRedo', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+          require('packer.load')({'compiler.nvim'}, { cmd = 'CompilerRedo', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'compiler.nvim', 'overseer.nvim'}, {}, _G.packer_plugins)
+          require('packer.load')({'compiler.nvim'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('CompilerRedo ', 'cmdline')
       end})
-pcall(vim.api.nvim_create_user_command, 'CompilerOpen', function(cmdargs)
-          require('packer.load')({'compiler.nvim', 'overseer.nvim'}, { cmd = 'CompilerOpen', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+pcall(vim.api.nvim_create_user_command, 'CompilerStop', function(cmdargs)
+          require('packer.load')({'compiler.nvim'}, { cmd = 'CompilerStop', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'compiler.nvim', 'overseer.nvim'}, {}, _G.packer_plugins)
+          require('packer.load')({'compiler.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('CompilerStop ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'CompilerOpen', function(cmdargs)
+          require('packer.load')({'compiler.nvim'}, { cmd = 'CompilerOpen', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'compiler.nvim'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('CompilerOpen ', 'cmdline')
       end})
 pcall(vim.api.nvim_create_user_command, 'CompilerToggleResults', function(cmdargs)
-          require('packer.load')({'compiler.nvim', 'overseer.nvim'}, { cmd = 'CompilerToggleResults', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+          require('packer.load')({'compiler.nvim'}, { cmd = 'CompilerToggleResults', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'compiler.nvim', 'overseer.nvim'}, {}, _G.packer_plugins)
+          require('packer.load')({'compiler.nvim'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('CompilerToggleResults ', 'cmdline')
       end})
 time([[Defining lazy-load commands]], false)
 
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Event lazy-loads
+time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-autopairs'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+time([[Defining lazy-load event autocommands]], false)
+vim.cmd("augroup END")
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

@@ -28,6 +28,14 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	use({
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
+
 	-- Formatters
 	use({ "nvimtools/none-ls.nvim" })
 	use({ "jay-babu/mason-null-ls.nvim" })
@@ -77,30 +85,23 @@ return require("packer").startup(function(use)
 
 	-- Auto Compiler Stuff
 	use({
-		"Zeioth/compiler.nvim",
-		cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
-		requires = {
-			"stevearc/overseer.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
+		"stevearc/overseer.nvim",
+		commit = "6271cab7ccc4ca840faa93f54440ffae3a3918bd",
+		module = "overseer", -- loads when require("overseer") is called
 		config = function()
-			require("compiler").setup({})
+			require("overseer").setup({
+				task_list = { direction = "bottom", min_height = 25, max_height = 25, default_detail = 1 },
+			})
 		end,
 	})
 
 	use({
-		"stevearc/overseer.nvim",
-		commit = "6271cab7ccc4ca840faa93f54440ffae3a3918bd",
-		cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
+		"Zeioth/compiler.nvim",
+		requires = { "stevearc/overseer.nvim", "nvim-telescope/telescope.nvim" },
+		after = "overseer.nvim",
+		cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo", "CompilerStop" },
 		config = function()
-			require("overseer").setup({
-				task_list = {
-					direction = "bottom",
-					min_height = 25,
-					max_height = 25,
-					default_detail = 1,
-				},
-			})
+			require("compiler").setup({})
 		end,
 	})
 end)
