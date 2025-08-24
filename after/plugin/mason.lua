@@ -9,3 +9,6 @@ require("mason-lspconfig").setup({
 		"clangd",
 	},
 })
+
+local lspconfig = require("lspconfig")
+lspconfig.clangd.setup({})

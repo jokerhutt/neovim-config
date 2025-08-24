@@ -76,10 +76,6 @@ return require("packer").startup(function(use)
 		},
 	})
 
-	-- Formatters/linters via null-ls
-	use("jay-babu/mason-null-ls.nvim")
-	use("nvimtools/none-ls.nvim") -- (null-ls)
-
 	-- Ensures External Tools install
 	use("WhoIsSethDaniel/mason-tool-installer.nvim")
 
