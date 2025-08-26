@@ -58,6 +58,9 @@ return require("packer").startup(function(use)
 	-- Wakatime
 	use("wakatime/vim-wakatime")
 
+	-- Vim Be Good
+	use("ThePrimeagen/vim-be-good")
+
 	-- LSP
 	use("neovim/nvim-lspconfig") -- basic LSP support
 	use("williamboman/mason.nvim") -- LSP/DAP/Linter/Formatter installer
@@ -83,7 +86,7 @@ return require("packer").startup(function(use)
 	use({
 		"stevearc/overseer.nvim",
 		commit = "6271cab7ccc4ca840faa93f54440ffae3a3918bd",
-		module = "overseer", -- loads when require("overseer") is called
+		module = "overseer",
 		config = function()
 			require("overseer").setup({
 				task_list = { direction = "bottom", min_height = 25, max_height = 25, default_detail = 1 },

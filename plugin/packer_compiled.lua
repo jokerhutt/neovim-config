@@ -171,7 +171,7 @@ _G.packer_plugins = {
   },
   ["overseer.nvim"] = {
     after = { "compiler.nvim" },
-    config = { "\27LJ\2\n™\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\14task_list\1\0\1\14task_list\0\1\0\4\15max_height\3\25\19default_detail\3\1\14direction\vbottom\15min_height\3\25\nsetup\roverseer\frequire\0" },
+    config = { "\27LJ\2\n™\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\14task_list\1\0\1\14task_list\0\1\0\4\14direction\vbottom\19default_detail\3\1\15max_height\3\25\15min_height\3\25\nsetup\roverseer\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -213,6 +213,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
+  },
+  ["vim-be-good"] = {
+    loaded = true,
+    path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/start/vim-be-good",
+    url = "https://github.com/ThePrimeagen/vim-be-good"
   },
   ["vim-fugitive"] = {
     loaded = true,
