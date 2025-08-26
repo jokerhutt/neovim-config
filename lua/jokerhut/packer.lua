@@ -103,4 +103,12 @@ return require("packer").startup(function(use)
 			require("compiler").setup({})
 		end,
 	})
+
+	use("MunifTanjim/nui.nvim")
+	use({
+		"kawre/leetcode.nvim",
+		requires = { "nvim-lua/plenary.nvim", "MunifTanjim/nui.nvim" },
+		run = ":TSUpdate html",
+		config = function() end,
+	})
 end)
