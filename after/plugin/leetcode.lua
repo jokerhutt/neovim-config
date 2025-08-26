@@ -4,7 +4,7 @@ if not ok then
 end
 
 leet.setup({
-	lang = "python3",
+	lang = "java",
 	picker = { provider = "telescope" },
 	plugins = { non_standalone = true },
 	description = { position = "left", width = "40%", show_stats = true },

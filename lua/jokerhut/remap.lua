@@ -32,3 +32,4 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>o", vim.cmd.only)
 
 vim.keymap.set("n", "<leader>lc", "<cmd>Leet<CR>", { silent = true })
+vim.keymap.set("n", "<leader>lcn", "<cmd>Leet list status=NOT_STARTED<CR>", { noremap = true, silent = true })
