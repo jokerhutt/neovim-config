@@ -28,9 +28,16 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	use({ "OXY2DEV/markview.nvim" })
+
+	-- Nvim Tree
+	use({ "nvim-tree/nvim-tree.lua" })
+	use({ "nvim-tree/nvim-web-devicons" })
+
 	-- Color Theme
 	use({ "rose-pine/neovim", as = "rose-pine" })
 	use("Mofiqul/dracula.nvim")
+	use({ "catppuccin/nvim", as = "catppuccin" })
 	use({
 		"projekt0n/github-nvim-theme",
 		config = function()

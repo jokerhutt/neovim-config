@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+
 vim.keymap.set("n", "<leader>t", ":ToggleTerm<CR>")
 
 vim.keymap.set("n", "<leader>y", '"+y')
@@ -12,6 +13,8 @@ local new_java = require("new_java")
 vim.keymap.set("n", "<leader>jc", new_java.new_java, { desc = "Create new Java type" })
 
 local opts = { noremap = true, silent = true }
+
+vim.keymap.set("n", "<leader>md", "<cmd>Markview splitToggle<CR>", { desc = "Toggle markdown preview split" })
 
 -- run mvn clean install
 vim.keymap.set("n", "<leader>mb", function()
@@ -32,6 +35,11 @@ vim.keymap.set("n", "<leader>p", '"+p')
 vim.keymap.set("v", "<leader>p", '"+p')
 
 vim.keymap.set("n", "<leader>o", ":only<CR>")
+
+vim.keymap.set("n", "<leader>h", "<C-w>h", { desc = "Go to left pane" })
+vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "Go to below pane" })
+vim.keymap.set("n", "<leader>k", "<C-w>k", { desc = "Go to above pane" })
+vim.keymap.set("n", "<leader>l", "<C-w>l", { desc = "Go to right pane" })
 
 vim.keymap.set(
 	"n",
