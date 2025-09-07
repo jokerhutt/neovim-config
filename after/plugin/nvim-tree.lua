@@ -29,8 +29,22 @@ require("nvim-tree").setup({
 
 		-- override open
 		map("<CR>", api.node.open.edit, "Open")
-		map("<leader>v", api.node.open.vertical, "Open in vsplit")
-		map("<leader>s", api.node.open.horizontal, "Open in split")
+
+		map("<CR>", api.node.open.edit, "Open")
+
+		map("<leader>v", function()
+			local old = vim.opt.splitright:get()
+			vim.opt.splitright = true
+			api.node.open.vertical()
+			vim.opt.splitright = old
+		end, "Open in vsplit (always right)")
+
+		map("<leader>s", function()
+			local old = vim.opt.splitbelow:get()
+			vim.opt.splitbelow = true
+			api.node.open.horizontal()
+			vim.opt.splitbelow = old
+		end, "Open in split (always below)")
 
 		-- change root to dir under cursor
 		map("<leader>cd", function()
