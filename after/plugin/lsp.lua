@@ -1,20 +1,13 @@
 local lspconfig = require("lspconfig")
+local caps = require("cmp_nvim_lsp").default_capabilities()
 
--- Lua
+
 lspconfig.lua_ls.setup({
-	settings = {
-		Lua = {
-			diagnostics = { globals = { "vim" } },
-			workspace = { checkThirdParty = false },
-		},
-	},
+  capabilities = caps,
+  settings = { Lua = { diagnostics = { globals = { "vim" } }, workspace = { checkThirdParty = false } } },
 })
 
--- JavaScript / TypeScript
-lspconfig.ts_ls.setup({})
-
--- Python
-lspconfig.pyright.setup({})
-
--- C /C++
-lspconfig.clangd.setup({})
+lspconfig.ts_ls.setup({ capabilities = caps })
+lspconfig.pyright.setup({ capabilities = caps })
+lspconfig.bashls.setup({ capabilities = caps })
+lspconfig.clangd.setup({ capabilities = caps })

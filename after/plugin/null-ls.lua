@@ -74,7 +74,7 @@ null_ls.setup({
 })
 
 require("mason-lspconfig").setup({
-	ensure_installed = { "lua_ls", "ts_ls", "jdtls", "pyright", "bashls", "clangd" },
+	ensure_installed = { "lua_ls", "ts_ls", "pyright", "bashls", "clangd" },
 })
 
 local lspconfig = require("lspconfig")
