@@ -10,8 +10,34 @@ return require("packer").startup(function(use)
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 
+	-- UI
+	use({
+		"stevearc/dressing.nvim",
+		config = function()
+			require("dressing").setup({
+				select = {
+					backend = { "telescope", "builtin" },
+					builtin = { start_in_insert = false },
+				},
+				input = {
+					relative = "editor",
+					prefer_width = 50,
+					insert_only = false,
+				},
+			})
+		end,
+	})
+
 	-- Color Theme
 	use({ "rose-pine/neovim", as = "rose-pine" })
+	use("Mofiqul/dracula.nvim")
+	use({
+		"projekt0n/github-nvim-theme",
+		config = function()
+			require("github-theme").setup({})
+		end,
+	})
+
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 
 	-- Toggle Term

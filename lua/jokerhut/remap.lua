@@ -8,6 +8,9 @@ vim.keymap.set("n", "<leader>Y", '"+Y')
 
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic under cursor" })
 
+local new_java = require("new_java")
+vim.keymap.set("n", "<leader>jc", new_java.new_java, { desc = "Create new Java type" })
+
 vim.keymap.set("n", "<leader>p", '"+p')
 vim.keymap.set("v", "<leader>p", '"+p')
 
