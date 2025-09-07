@@ -1,1 +1,2 @@
-##  Hi
+#  Jokerhut's Neovim Config
+

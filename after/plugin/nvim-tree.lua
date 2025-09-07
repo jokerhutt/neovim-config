@@ -1,13 +1,56 @@
--- lua/plugins/nvim-tree.lua
+-- disable netrw (recommended by nvim-tree)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 require("nvim-tree").setup({
-	-- your tree options
+	-- keep tree open after opening files
+	actions = {
+		open_file = {
+			quit_on_open = false,
+			resize_window = true,
+			window_picker = {
+				enable = false, -- <— turn off the picker
+			},
+		},
+	},
+
+	-- your other tree opts here if needed …
+
+	-- NEW API: set buffer-local mappings here
+	on_attach = function(bufnr)
+		local api = require("nvim-tree.api")
+		local function map(lhs, rhs, desc)
+			vim.keymap.set(
+				"n",
+				lhs,
+				rhs,
+				{ buffer = bufnr, noremap = true, silent = true, nowait = true, desc = "NvimTree: " .. desc }
+			)
+		end
+
+		-- open file
+		map("<CR>", api.node.open.edit, "Open")
+		-- splits
+		map("<leader>v", api.node.open.vertical, "Open in vsplit")
+		map("<leader>s", api.node.open.horizontal, "Open in split")
+
+		-- change root to dir under cursor
+		map("<leader>cd", function()
+			local node = api.tree.get_node_under_cursor()
+			if node and node.type == "directory" then
+				api.tree.change_root(node.absolute_path)
+			else
+				vim.notify("Cursor is not on a directory", vim.log.levels.WARN)
+			end
+		end, "Change root to cursor dir")
+
+		-- change root to parent
+		map("<leader>cu", api.tree.change_root_to_parent, "Change root to parent")
+	end,
 })
 
--- === focus toggle code ===
+-- ===== focus toggle: tree ↔ last non-tree window =====
 local api = require("nvim-tree.api")
 local LAST_NORMAL_WIN = nil
 
@@ -21,7 +64,7 @@ vim.api.nvim_create_autocmd("WinEnter", {
 
 local function toggle_focus_tree_or_last()
 	if not api.tree.is_visible() then
-		return -- do nothing if tree isn’t open
+		return
 	end
 	if vim.bo.filetype == "NvimTree" then
 		if LAST_NORMAL_WIN and vim.api.nvim_win_is_valid(LAST_NORMAL_WIN) then
@@ -35,26 +78,3 @@ local function toggle_focus_tree_or_last()
 end
 
 vim.keymap.set("n", "<leader>pv", toggle_focus_tree_or_last, { desc = "Focus swap: tree ↔ last window" })
-
--- after your existing code in lua/plugins/nvim-tree.lua
-local api = require("nvim-tree.api")
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "NvimTree",
-	callback = function(ev)
-		-- <leader>cd: set tree root to directory under cursor
-		vim.keymap.set("n", "<leader>cd", function()
-			local node = api.tree.get_node_under_cursor()
-			if node and node.type == "directory" then
-				api.tree.change_root(node.absolute_path)
-			else
-				vim.notify("Cursor is not on a directory", vim.log.levels.WARN)
-			end
-		end, { buffer = ev.buf, desc = "NvimTree: change root to cursor dir" })
-
-		-- optional: <leader>cu go up one level
-		vim.keymap.set("n", "<leader>cu", function()
-			api.tree.change_root("..")
-		end, { buffer = ev.buf, desc = "NvimTree: change root to parent" })
-	end,
-})

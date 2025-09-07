@@ -30,9 +30,11 @@ return require("packer").startup(function(use)
 
 	use({ "OXY2DEV/markview.nvim" })
 
-	-- Nvim Tree
-	use({ "nvim-tree/nvim-tree.lua" })
+
+	use("nvim-tree/nvim-tree.lua")
 	use({ "nvim-tree/nvim-web-devicons" })
+
+use({"akinsho/bufferline.nvim", tag = "*"}) 
 
 	-- Color Theme
 	use({ "rose-pine/neovim", as = "rose-pine" })
