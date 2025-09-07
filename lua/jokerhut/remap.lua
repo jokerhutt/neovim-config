@@ -11,6 +11,23 @@ vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagn
 local new_java = require("new_java")
 vim.keymap.set("n", "<leader>jc", new_java.new_java, { desc = "Create new Java type" })
 
+local opts = { noremap = true, silent = true }
+
+-- run mvn clean install
+vim.keymap.set("n", "<leader>mb", function()
+	vim.cmd("vsplit | terminal mvn clean install")
+end, opts)
+
+-- run mvn test
+vim.keymap.set("n", "<leader>mt", function()
+	vim.cmd("vsplit | terminal mvn test")
+end, opts)
+
+-- run mvn spring-boot:run
+vim.keymap.set("n", "<leader>mr", function()
+	vim.cmd("vsplit | terminal mvn spring-boot:run")
+end, opts)
+
 vim.keymap.set("n", "<leader>p", '"+p')
 vim.keymap.set("v", "<leader>p", '"+p')
 
