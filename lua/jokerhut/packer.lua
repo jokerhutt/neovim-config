@@ -66,6 +66,10 @@ return require("packer").startup(function(use)
 	use("williamboman/mason.nvim") -- LSP/DAP/Linter/Formatter installer
 	use("williamboman/mason-lspconfig.nvim") -- bridges mason + lspconfig
 
+	-- Java support
+	use("mfussenegger/nvim-jdtls")
+	use("mfussenegger/nvim-dap")
+
 	-- CMP
 	use({
 		"hrsh7th/nvim-cmp",

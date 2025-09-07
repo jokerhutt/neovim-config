@@ -16,8 +16,5 @@ lspconfig.ts_ls.setup({})
 -- Python
 lspconfig.pyright.setup({})
 
--- Java
-lspconfig.jdtls.setup({})
-
 -- C /C++
 lspconfig.clangd.setup({})
