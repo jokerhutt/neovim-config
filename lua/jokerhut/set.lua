@@ -29,3 +29,5 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = ""
 
 vim.opt.hidden = true
+
+vim.opt.showtabline = 2 -- always show tabline

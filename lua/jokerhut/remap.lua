@@ -40,13 +40,6 @@ vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "Go to below pane" })
 vim.keymap.set("n", "<leader>k", "<C-w>k", { desc = "Go to above pane" })
 vim.keymap.set("n", "<leader>l", "<C-w>l", { desc = "Go to right pane" })
 
--- buffer navigation
-vim.keymap.set("n", "<leader>H", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
-vim.keymap.set("n", "<leader>L", "<Cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
-
--- close current buffer
-vim.keymap.set("n", "<leader>bd", "<Cmd>bdelete<CR>", { desc = "Delete buffer" })
-
 -- COMPILER --
 vim.keymap.set(
 	"n",

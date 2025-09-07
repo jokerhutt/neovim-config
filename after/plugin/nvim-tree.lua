@@ -4,22 +4,20 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 require("nvim-tree").setup({
-	-- keep tree open after opening files
 	actions = {
 		open_file = {
 			quit_on_open = false,
 			resize_window = true,
-			window_picker = {
-				enable = false, -- <— turn off the picker
-			},
+			window_picker = { enable = false }, -- don’t ask where to open
 		},
 	},
 
-	-- your other tree opts here if needed …
-
-	-- NEW API: set buffer-local mappings here
 	on_attach = function(bufnr)
 		local api = require("nvim-tree.api")
+
+		-- bring back all default mappings
+		api.config.mappings.default_on_attach(bufnr)
+
 		local function map(lhs, rhs, desc)
 			vim.keymap.set(
 				"n",
@@ -29,9 +27,8 @@ require("nvim-tree").setup({
 			)
 		end
 
-		-- open file
+		-- override open
 		map("<CR>", api.node.open.edit, "Open")
-		-- splits
 		map("<leader>v", api.node.open.vertical, "Open in vsplit")
 		map("<leader>s", api.node.open.horizontal, "Open in split")
 
@@ -64,8 +61,11 @@ vim.api.nvim_create_autocmd("WinEnter", {
 
 local function toggle_focus_tree_or_last()
 	if not api.tree.is_visible() then
+		-- no tree -> open and focus it
+		api.tree.open({ find_file = false, focus = true })
 		return
 	end
+
 	if vim.bo.filetype == "NvimTree" then
 		if LAST_NORMAL_WIN and vim.api.nvim_win_is_valid(LAST_NORMAL_WIN) then
 			vim.api.nvim_set_current_win(LAST_NORMAL_WIN)
