@@ -1,4 +1,3 @@
--- disable netrw (recommended by nvim-tree)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
@@ -8,14 +7,13 @@ require("nvim-tree").setup({
 		open_file = {
 			quit_on_open = false,
 			resize_window = true,
-			window_picker = { enable = false }, -- don’t ask where to open
+			window_picker = { enable = false },
 		},
 	},
 
 	on_attach = function(bufnr)
 		local api = require("nvim-tree.api")
 
-		-- bring back all default mappings
 		api.config.mappings.default_on_attach(bufnr)
 
 		local function map(lhs, rhs, desc)
@@ -27,10 +25,31 @@ require("nvim-tree").setup({
 			)
 		end
 
-		-- override open
 		map("<CR>", api.node.open.edit, "Open")
 
 		map("<CR>", api.node.open.edit, "Open")
+
+		map("A", function()
+			local api = require("nvim-tree.api")
+			local node = api.tree.get_node_under_cursor()
+			local base
+			if node and node.type == "directory" then
+				base = node.absolute_path
+			elseif node then
+				base = vim.fn.fnamemodify(node.absolute_path, ":h")
+			else
+				base = api.tree.get_nodes().root.absolute_path
+			end
+
+			vim.ui.input({ prompt = "New directory name: " }, function(name)
+				if not name or name == "" then
+					return
+				end
+				local path = base .. "/" .. name
+				vim.fn.mkdir(path, "p") -- create directory (recursive)
+				api.tree.reload() -- refresh the view
+			end)
+		end, "Create directory")
 
 		map("<leader>v", function()
 			local old = vim.opt.splitright:get()
@@ -56,12 +75,10 @@ require("nvim-tree").setup({
 			end
 		end, "Change root to cursor dir")
 
-		-- change root to parent
 		map("<leader>cu", api.tree.change_root_to_parent, "Change root to parent")
 	end,
 })
 
--- ===== focus toggle: tree ↔ last non-tree window =====
 local api = require("nvim-tree.api")
 local LAST_NORMAL_WIN = nil
 
@@ -75,7 +92,6 @@ vim.api.nvim_create_autocmd("WinEnter", {
 
 local function toggle_focus_tree_or_last()
 	if not api.tree.is_visible() then
-		-- no tree -> open and focus it
 		api.tree.open({ find_file = false, focus = true })
 		return
 	end

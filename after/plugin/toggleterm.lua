@@ -1,4 +1,3 @@
--- leave terminal mode with <Esc>
 vim.api.nvim_create_autocmd("TermOpen", {
 	pattern = "term://*",
 	callback = function()

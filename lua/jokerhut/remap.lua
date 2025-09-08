@@ -15,17 +15,23 @@ vim.keymap.set("n", "<leader>jc", new_java.new_java, { desc = "Create new Java t
 vim.keymap.set("n", "<leader>md", "<cmd>Markview splitToggle<CR>", { desc = "Toggle markdown preview split" })
 
 -- MAVEN --
+local maven = require("maven_runner")
+
 vim.keymap.set("n", "<leader>mb", function()
-	vim.cmd("vsplit | terminal mvn clean install")
-end, opts)
+	maven.run("mvn clean install", "mb")
+end, { desc = "Maven build" })
 
 vim.keymap.set("n", "<leader>mt", function()
-	vim.cmd("vsplit | terminal mvn test")
-end, opts)
+	maven.run("mvn test", "mt")
+end, { desc = "Maven test" })
 
 vim.keymap.set("n", "<leader>mr", function()
-	vim.cmd("vsplit | terminal mvn spring-boot:run")
-end, opts)
+	maven.run("mvn spring-boot:run", "mr")
+end, { desc = "Maven run" })
+
+vim.keymap.set("n", "<leader>mo", function()
+	require("maven_runner").focus_any()
+end, { desc = "Open Maven log" })
 
 -- SYSTEM CLIPBOARD --
 vim.keymap.set("n", "<leader>p", '"+p')
@@ -33,6 +39,14 @@ vim.keymap.set("v", "<leader>p", '"+p')
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+Y')
+
+-- keep half-page jumps centered
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half-page down, center" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half-page up, center" })
+
+-- keep search results centered
+vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result, center" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Prev search result, center" })
 
 -- NAVIGATION --
 vim.keymap.set("n", "<leader>h", "<C-w>h", { desc = "Go to left pane" })

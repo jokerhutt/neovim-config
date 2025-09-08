@@ -9,6 +9,6 @@ require("mason-lspconfig").setup({
 		function(server)
 			lspconfig[server].setup({ capabilities = caps })
 		end,
-		["jdtls"] = function() end, -- skip: nvim-jdtls/ftplugin handles Java
+		["jdtls"] = function() end,
 	},
 })

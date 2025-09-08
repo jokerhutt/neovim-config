@@ -49,12 +49,56 @@ local function lsp_attach(_, bufnr)
 		require("jdtls.dap").setup_dap_main_class_configs()
 	end)
 
-	local map = function(lhs, rhs)
-		vim.keymap.set("n", lhs, rhs, { buffer = bufnr, silent = true })
+	local function map(lhs, rhs, desc)
+		if type(rhs) == "function" then
+			vim.keymap.set("n", lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
+		end
 	end
-	map("gd", vim.lsp.buf.definition)
-	map("gr", vim.lsp.buf.references)
-	map("K", vim.lsp.buf.hover)
+
+	-- core
+	map("gd", vim.lsp.buf.definition, "Go to definition")
+	map("gr", vim.lsp.buf.references, "Find references")
+	map("K", vim.lsp.buf.hover, "Hover docs")
+
+	-- lspsaga (guard each call)
+	do
+		local ok_saga, saga = pcall(require, "lspsaga.codeaction")
+		if ok_saga then
+			-- generic code actions
+			map("<leader>ca", function()
+				saga.code_action()
+			end, "Code Action (lspsaga)")
+
+			-- explicit “Implement interface / Generate …” menu
+			map("<leader>ei", function()
+				saga.code_action()
+			end, "Implement/Generate menu")
+
+			if type(saga.range_code_action) == "function" then
+				vim.keymap.set({ "n", "v" }, "<leader>cA", function()
+					saga.range_code_action()
+				end, { buffer = bufnr, silent = true, desc = "Range Code Action (lspsaga)" })
+			end
+		else
+			map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
+			map("<leader>ei", vim.lsp.buf.code_action, "Implement/Generate menu")
+		end
+	end
+
+	-- jdtls helpers
+	local ok_j, j = pcall(require, "jdtls")
+	if ok_j then
+		map("<leader>oi", j.organize_imports, "Organize imports")
+		map("<leader>ev", j.extract_variable, "Extract variable")
+		map("<leader>em", j.extract_method, "Extract method")
+
+		if type(j.test_nearest_method) == "function" then
+			map("<leader>tn", j.test_nearest_method, "Test: nearest method")
+		end
+		if type(j.test_nearest_class) == "function" then
+			map("<leader>tC", j.test_nearest_class, "Test: class")
+		end
+	end
 end
 
 -- Force JDK 21 (matches your ~/.zshrc)
