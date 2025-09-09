@@ -28,6 +28,10 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	use({ "goolord/alpha-nvim" })
+
+	use({ "kdheepak/lazygit.nvim" })
+
 	use({ "OXY2DEV/markview.nvim" })
 
 	use("nvim-tree/nvim-tree.lua")
@@ -37,6 +41,7 @@ return require("packer").startup(function(use)
 
 	-- Color Theme
 	use({ "rose-pine/neovim", as = "rose-pine" })
+	use({ "arzg/vim-colors-xcode", as = "xcode" })
 	use("Mofiqul/dracula.nvim")
 	use({ "catppuccin/nvim", as = "catppuccin" })
 	use({

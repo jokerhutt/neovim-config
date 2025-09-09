@@ -33,6 +33,42 @@ vim.keymap.set("n", "<leader>mo", function()
 	require("maven_runner").focus_any()
 end, { desc = "Open Maven log" })
 
+vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Open LazyGit" })
+
+-- Gradle: picker that opens existing log or launches if missing
+vim.keymap.set("n", "<leader>gr", function()
+	local runner = require("maven_runner")
+
+	local items = {
+		{ key = "1", label = "Gradle build (gb)", cmd = "./gradlew build" },
+		{ key = "2", label = "Gradle test (gt)", cmd = "./gradlew test" },
+		{ key = "3", label = "Gradle runClient (gc)", cmd = "./gradlew runClient" },
+		{ key = "4", label = "Gradle runServer (gs)", cmd = "./gradlew runServer" },
+		{ key = "5", label = "Gradle download sources (gS)", cmd = "./gradlew --refresh-dependencies" },
+		{ key = "6", label = "Gradle genIntellijRuns (gi)", cmd = "./gradlew genIntellijRuns" },
+	}
+
+	vim.ui.select(items, {
+		prompt = "Gradle task:",
+		format_item = function(it)
+			return it.label
+		end,
+	}, function(choice)
+		if not choice then
+			return
+		end
+		-- try to focus, but if nothing exists, run it
+		local bufnr = runner.focus(choice.key)
+		if not bufnr then
+			runner.run(choice.cmd, choice.key)
+		end
+	end)
+end, { desc = "Gradle: pick task (focus or run)" })
+
+vim.keymap.set("n", "<leader>go", function()
+	require("maven_runner").focus("gr")
+end, { desc = "Open Gradle log" })
+
 -- SYSTEM CLIPBOARD --
 vim.keymap.set("n", "<leader>p", '"+p')
 vim.keymap.set("v", "<leader>p", '"+p')

@@ -1,109 +1,78 @@
 -- ~/.config/nvim/ftplugin/java.lua
+-- jdtls as the sole formatter for Java, using an Eclipse XML profile.
 
-local jdtls = require("jdtls")
+local ok_jdtls, jdtls = pcall(require, "jdtls")
+if not ok_jdtls then
+	vim.notify("nvim-jdtls not found", vim.log.levels.ERROR)
+	return
+end
+
 local home = vim.loop.os_homedir()
 
--- Paths you set up
-local JDTLS_ROOT = home .. "/.local/share/jdtls" -- where you extracted jdtls
-local LOMBOK_JAR = home .. "/.local/share/lombok/lombok.jar" -- downloaded lombok.jar
-local JAVA_DEBUG = vim.fn.stdpath("data") .. "/java-debug" -- ~/.local/share/nvim/java-debug
+-- Adjust these to your paths
+local JDTLS_ROOT = home .. "/.local/share/jdtls" -- folder containing 'plugins' and 'config_*'
+local LOMBOK_JAR = home .. "/.local/share/lombok/lombok.jar" -- download lombok.jar
+local JAVA_DEBUG = vim.fn.stdpath("data") .. "/java-debug" -- optional debug plugin build output
+local ECLIPSE_STYLE = home .. "/.config/nvim/eclipse-java-google-style.xml" -- your formatter XML
+local JAVA_HOME = "/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home" -- macOS JDK 21
 
--- Resolve launcher + OS config (macOS)
+-- Resolve launcher + OS config
 local LAUNCHER_JAR = vim.fn.glob(JDTLS_ROOT .. "/plugins/org.eclipse.equinox.launcher_*.jar")
-local CONFIG_DIR = JDTLS_ROOT .. "/config_mac"
+local CONFIG_DIR = JDTLS_ROOT .. "/config_mac" -- or config_linux / config_win
 
--- Find project root first
+-- Project root
 local root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
 if not root_dir or root_dir == "" then
 	return
 end
 
--- Stable workspace per project (cache dir)
+-- Workspace per project
 local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
 local WORKSPACE = vim.fn.stdpath("cache") .. "/jdtls/" .. project_name
 
--- Basic sanity checks
-if LAUNCHER_JAR == nil or LAUNCHER_JAR == "" then
-	vim.notify("JDTLS launcher not found in " .. JDTLS_ROOT, vim.log.levels.ERROR)
-	return
-end
-if vim.fn.filereadable(LOMBOK_JAR) == 0 then
-	vim.notify("Lombok jar not found at " .. LOMBOK_JAR, vim.log.levels.WARN)
-end
-
--- Optional: java-debug bundle
+-- Optional debug bundle
 local debug_bundle =
 	vim.fn.glob(JAVA_DEBUG .. "/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar", 1)
 local bundles = {}
-if debug_bundle ~= nil and debug_bundle ~= "" then
+if debug_bundle and debug_bundle ~= "" then
 	bundles = { debug_bundle }
 end
 
--- Capabilities & on_attach
-local caps = require("cmp_nvim_lsp").default_capabilities()
+-- LSP caps
+local caps = {}
+pcall(function()
+	caps = require("cmp_nvim_lsp").default_capabilities()
+end)
+
+-- on_attach
 local function lsp_attach(_, bufnr)
+	-- Make jdtls the formatter (null-ls code in null-ls.lua filters by filetype)
+	-- Keymaps
+	local function nmap(lhs, rhs, desc)
+		vim.keymap.set("n", lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
+	end
+
+	nmap("gd", vim.lsp.buf.definition, "Go to definition")
+	nmap("gr", vim.lsp.buf.references, "Find references")
+	nmap("K", vim.lsp.buf.hover, "Hover")
+	nmap("<leader>rn", vim.lsp.buf.rename, "Rename")
+	nmap("<leader>ca", vim.lsp.buf.code_action, "Code Action")
+
+	-- jdtls extras
+	pcall(function()
+		nmap("<leader>oi", jdtls.organize_imports, "Organize imports")
+		nmap("<leader>ev", jdtls.extract_variable, "Extract variable")
+		nmap("<leader>em", jdtls.extract_method, "Extract method")
+	end)
+
+	-- DAP helpers if present
 	pcall(function()
 		require("jdtls.dap").setup_dap({ hotcodereplace = "auto" })
-	end)
-	pcall(function()
 		require("jdtls.dap").setup_dap_main_class_configs()
 	end)
-
-	local function map(lhs, rhs, desc)
-		if type(rhs) == "function" then
-			vim.keymap.set("n", lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
-		end
-	end
-
-	-- core
-	map("gd", vim.lsp.buf.definition, "Go to definition")
-	map("gr", vim.lsp.buf.references, "Find references")
-	map("K", vim.lsp.buf.hover, "Hover docs")
-
-	-- lspsaga (guard each call)
-	do
-		local ok_saga, saga = pcall(require, "lspsaga.codeaction")
-		if ok_saga then
-			-- generic code actions
-			map("<leader>ca", function()
-				saga.code_action()
-			end, "Code Action (lspsaga)")
-
-			-- explicit “Implement interface / Generate …” menu
-			map("<leader>ei", function()
-				saga.code_action()
-			end, "Implement/Generate menu")
-
-			if type(saga.range_code_action) == "function" then
-				vim.keymap.set({ "n", "v" }, "<leader>cA", function()
-					saga.range_code_action()
-				end, { buffer = bufnr, silent = true, desc = "Range Code Action (lspsaga)" })
-			end
-		else
-			map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
-			map("<leader>ei", vim.lsp.buf.code_action, "Implement/Generate menu")
-		end
-	end
-
-	-- jdtls helpers
-	local ok_j, j = pcall(require, "jdtls")
-	if ok_j then
-		map("<leader>oi", j.organize_imports, "Organize imports")
-		map("<leader>ev", j.extract_variable, "Extract variable")
-		map("<leader>em", j.extract_method, "Extract method")
-
-		if type(j.test_nearest_method) == "function" then
-			map("<leader>tn", j.test_nearest_method, "Test: nearest method")
-		end
-		if type(j.test_nearest_class) == "function" then
-			map("<leader>tC", j.test_nearest_class, "Test: class")
-		end
-	end
 end
 
--- Force JDK 21 (matches your ~/.zshrc)
-local JAVA_HOME = "/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home"
-
+-- Command
 local cmd = {
 	"java",
 	"-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -126,6 +95,7 @@ local cmd = {
 	WORKSPACE,
 }
 
+-- Start/attach with formatter profile
 jdtls.start_or_attach({
 	cmd = cmd,
 	cmd_env = { JAVA_HOME = JAVA_HOME, PATH = JAVA_HOME .. "/bin:" .. os.getenv("PATH") },
@@ -135,22 +105,26 @@ jdtls.start_or_attach({
 	init_options = { bundles = bundles },
 	settings = {
 		java = {
-			signatureHelp = { enabled = true },
 			configuration = { updateBuildConfiguration = "interactive" },
 			contentProvider = { preferred = "fernflower" },
+			signatureHelp = { enabled = true },
+			format = {
+				enabled = true,
+				settings = {
+					url = "file://" .. ECLIPSE_STYLE,
+					profile = "GoogleStyle", -- or whatever the XML defines
+				},
+			},
+			-- Optional: organize imports on save
+			saveActions = { organizeImports = true },
+			-- Optional: how annotations and wrapping behave depend on the XML
 		},
 	},
 })
 
--- (Optional) simple DAP config for single-file runs
-local ok_dap, dap = pcall(require, "dap")
-if ok_dap then
-	dap.configurations.java = {
-		{
-			type = "java",
-			request = "launch",
-			name = "Debug current file",
-			program = "${file}",
-		},
-	}
-end
+-- Buffer-local fallback opts (won’t fight jdtls)
+vim.bo.expandtab = true
+vim.bo.shiftwidth = 4
+vim.bo.tabstop = 4
+vim.bo.softtabstop = 4
+vim.bo.cindent = false
