@@ -34,6 +34,10 @@ return require("packer").startup(function(use)
 
 	use({ "OXY2DEV/markview.nvim" })
 
+	use({ "MaximilianLloyd/ascii.nvim", requires = {
+		"MunifTanjim/nui.nvim",
+	} })
+
 	use("nvim-tree/nvim-tree.lua")
 	use({ "nvim-tree/nvim-web-devicons" })
 
