@@ -81,7 +81,8 @@ return require("packer").startup(function(use)
 
 	-- Formatters
 	use({ "nvimtools/none-ls.nvim" })
-	use({ "jay-babu/mason-null-ls.nvim" })
+	use({ "gbprod/none-ls-shellcheck.nvim" })
+	use({ "nvimtools/none-ls-extras.nvim" })
 
 	-- TreeSitter
 	use("nvim-treesitter/playground")
