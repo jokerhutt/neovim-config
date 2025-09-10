@@ -7,6 +7,13 @@ require("nvim-tree").setup({
 		width = 50,
 		side = "left",
 	},
+	filters = {
+		dotfiles = false,
+	},
+	git = {
+		enable = true,
+		ignore = false,
+	},
 	actions = {
 		open_file = {
 			quit_on_open = false,

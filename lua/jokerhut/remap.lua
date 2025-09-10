@@ -114,6 +114,12 @@ vim.keymap.set(
 	"<cmd>CompilerStop<cr>" .. "<cmd>CompilerRedo<cr>" .. "<cmd>CompilerToggleResults<cr>",
 	{ noremap = true, silent = true, desc = "Compile, run, and show results" }
 )
+vim.keymap.set(
+	"n",
+	"<leader>co",
+	"<cmd>CompilerToggleResults<cr>",
+	{ noremap = true, silent = true, desc = "Toggle compiler results" }
+)
 
 -- CLOSE OTHER BUFFERS --
 vim.keymap.set("n", "<leader>o", vim.cmd.only)

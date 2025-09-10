@@ -23,7 +23,7 @@ dashboard.section.buttons.val = {
 	dashboard.button("q", "  Quit", ":qa<CR>"),
 }
 
--- Only show Alpha when starting with no files/args
+-- SHOW ONLY ON STARTUP WITH NO ARGS
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		if vim.fn.argc() == 0 then

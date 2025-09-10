@@ -1,4 +1,3 @@
--- Mason
 pcall(function()
 	require("mason").setup()
 end)
@@ -17,10 +16,8 @@ pcall(function()
 	})
 end)
 
--- Put Mason tools on PATH
 vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
 
--- none-ls (compat module name is still "null-ls")
 local null_ls = require("null-ls")
 
 null_ls.setup({

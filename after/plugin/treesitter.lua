@@ -6,7 +6,18 @@ require("nvim-treesitter.configs").setup({
 	auto_install = true,
 
 	highlight = {
-		enable = true, 
+		enable = true,
 		additional_vim_regex_highlighting = false,
+	},
+})
+
+-- Tell NVim to treat .env files as shell
+vim.filetype.add({
+	extension = {
+		env = "sh",
+	},
+	filename = {
+		[".env"] = "sh",
+		[".env.local"] = "sh",
 	},
 })
