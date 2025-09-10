@@ -3,6 +3,10 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 require("nvim-tree").setup({
+	view = {
+		width = 50,
+		side = "left",
+	},
 	actions = {
 		open_file = {
 			quit_on_open = false,

@@ -33,6 +33,16 @@ vim.keymap.set("n", "<leader>mo", function()
 	require("maven_runner").focus_any()
 end, { desc = "Open Maven log" })
 
+-- reopen alpha dashboard
+vim.keymap.set("n", "<leader>db", function()
+	-- if Alpha is already open, just refresh
+	if vim.bo.filetype == "alpha" then
+		vim.cmd("AlphaRedraw")
+	else
+		vim.cmd("Alpha")
+	end
+end, { desc = "Open Alpha dashboard" })
+
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Open LazyGit" })
 
 -- Gradle: picker that opens existing log or launches if missing

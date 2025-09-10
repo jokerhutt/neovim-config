@@ -11,6 +11,18 @@ else
 	dashboard.section.header.val = { "Neovim" }
 end
 
+-- BUTTONS
+dashboard.section.buttons.val = {
+	dashboard.button("e", "  New file", ":ene <BAR> startinsert<CR>"),
+	dashboard.button("<leader>pf", "  Find file", ":Telescope find_files<CR>"),
+	dashboard.button("<leader>pv", "  Open filetree", ":NvimTreeToggle<CR>"),
+	dashboard.button("<leader>pr", "  Recent files", ":Telescope oldfiles<CR>"),
+	dashboard.button("w", "󰱼  Find word", ":Telescope live_grep<CR>"),
+	dashboard.button("<leader>bb", "  Bookmarks", ":Telescope marks<CR>"),
+	dashboard.button("<leader>ol", "󰑖  Last session", ":SessionManager load_last_session<CR>"),
+	dashboard.button("q", "  Quit", ":qa<CR>"),
+}
+
 -- Only show Alpha when starting with no files/args
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
