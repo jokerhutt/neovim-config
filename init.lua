@@ -1,5 +1,8 @@
-vim.o.termguicolors = true
 vim.o.background = "dark"
+vim.o.guifont = "JetBrainsMono Nerd Font:h14"
+
+vim.o.termguicolors = true
+
 require("jokerhut.remap")
 require("jokerhut.packer")
 require("jokerhut.set")

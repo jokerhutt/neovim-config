@@ -45,9 +45,7 @@ pcall(function()
 end)
 
 -- on_attach
-local function lsp_attach(_, bufnr)
-	-- Make jdtls the formatter (null-ls code in null-ls.lua filters by filetype)
-	-- Keymaps
+local function lsp_attach(client, bufnr)
 	local function nmap(lhs, rhs, desc)
 		vim.keymap.set("n", lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
 	end
@@ -58,14 +56,12 @@ local function lsp_attach(_, bufnr)
 	nmap("<leader>rn", vim.lsp.buf.rename, "Rename")
 	nmap("<leader>ca", vim.lsp.buf.code_action, "Code Action")
 
-	-- jdtls extras
 	pcall(function()
 		nmap("<leader>oi", jdtls.organize_imports, "Organize imports")
 		nmap("<leader>ev", jdtls.extract_variable, "Extract variable")
 		nmap("<leader>em", jdtls.extract_method, "Extract method")
 	end)
 
-	-- DAP helpers if present
 	pcall(function()
 		require("jdtls.dap").setup_dap({ hotcodereplace = "auto" })
 		require("jdtls.dap").setup_dap_main_class_configs()

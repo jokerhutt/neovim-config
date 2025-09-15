@@ -55,7 +55,8 @@ vim.keymap.set("n", "<leader>gr", function()
 		{ key = "3", label = "Gradle runClient (gc)", cmd = "./gradlew runClient" },
 		{ key = "4", label = "Gradle runServer (gs)", cmd = "./gradlew runServer" },
 		{ key = "5", label = "Gradle download sources (gS)", cmd = "./gradlew --refresh-dependencies" },
-		{ key = "6", label = "Gradle genIntellijRuns (gi)", cmd = "./gradlew genIntellijRuns" },
+		{ key = "6", label = "Run LWJGL3  (gr)", cmd = "./gradlew lwjgl3:run" },
+		{ key = "7", label = "Gradle genIntellijRuns (gi)", cmd = "./gradlew genIntellijRuns" },
 	}
 
 	vim.ui.select(items, {

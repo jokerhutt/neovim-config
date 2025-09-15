@@ -1,6 +1,7 @@
 pcall(function()
 	require("mason").setup()
 end)
+
 pcall(function()
 	require("mason-null-ls").setup({
 		ensure_installed = {
@@ -54,14 +55,22 @@ null_ls.setup({
 			vim.keymap.set("n", "<leader>f", function()
 				vim.lsp.buf.format({ bufnr = bufnr, filter = prefer_for_buf })
 			end, { buffer = bufnr, desc = "Format buffer" })
-			local grp = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				group = grp,
-				buffer = bufnr,
-				callback = function()
-					vim.lsp.buf.format({ bufnr = bufnr, filter = prefer_for_buf })
-				end,
-			})
 		end
 	end,
+})
+
+local grp = vim.api.nvim_create_augroup("FormatOnSaveAll", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = grp,
+  callback = function(args)
+    local ft = vim.bo[args.buf].filetype
+    vim.lsp.buf.format({
+      bufnr = args.buf,
+      async = false,
+      filter = function(c)
+        if ft == "java" then return c.name == "jdtls" end
+        return c.name == "null-ls" or c.name == "none-ls"
+      end,
+    })
+  end,
 })

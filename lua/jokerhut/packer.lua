@@ -29,6 +29,7 @@ return require("packer").startup(function(use)
 	})
 
 	use({ "goolord/alpha-nvim" })
+	use({ "nvimdev/dashboard-nvim" })
 
 	use({ "kdheepak/lazygit.nvim" })
 
@@ -48,6 +49,9 @@ return require("packer").startup(function(use)
 	use({ "arzg/vim-colors-xcode", as = "xcode" })
 	use("Mofiqul/dracula.nvim")
 	use({ "catppuccin/nvim", as = "catppuccin" })
+
+	use({ "AlexvZyl/nordic.nvim", as = "nordic" })
+
 	use({
 		"projekt0n/github-nvim-theme",
 		config = function()
