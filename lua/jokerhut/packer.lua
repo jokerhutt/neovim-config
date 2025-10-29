@@ -51,7 +51,6 @@ return require("packer").startup(function(use)
 	use({ "arzg/vim-colors-xcode", as = "xcode" })
 	use({ "Mofiqul/dracula.nvim", as = "dracula" })
 	use({ "catppuccin/nvim", as = "catppuccin" })
-
 	use({ "AlexvZyl/nordic.nvim", as = "nordic" })
 
 	use({
@@ -115,10 +114,6 @@ return require("packer").startup(function(use)
 	use("neovim/nvim-lspconfig") -- basic LSP support
 	use("williamboman/mason.nvim") -- LSP/DAP/Linter/Formatter installer
 	use("williamboman/mason-lspconfig.nvim") -- bridges mason + lspconfig
-
-	-- Java support
-	use("mfussenegger/nvim-jdtls")
-	use("mfussenegger/nvim-dap")
 
 	-- CMP
 	use({

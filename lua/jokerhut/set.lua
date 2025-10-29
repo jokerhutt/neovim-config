@@ -1,4 +1,7 @@
+-- Absolute Line Numbers
 vim.opt.nu = true
+
+-- Relative Line Numbers
 vim.opt.relativenumber = true
 
 vim.opt.tabstop = 4

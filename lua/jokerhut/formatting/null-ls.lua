@@ -61,16 +61,18 @@ null_ls.setup({
 
 local grp = vim.api.nvim_create_augroup("FormatOnSaveAll", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePre", {
-  group = grp,
-  callback = function(args)
-    local ft = vim.bo[args.buf].filetype
-    vim.lsp.buf.format({
-      bufnr = args.buf,
-      async = false,
-      filter = function(c)
-        if ft == "java" then return c.name == "jdtls" end
-        return c.name == "null-ls" or c.name == "none-ls"
-      end,
-    })
-  end,
+	group = grp,
+	callback = function(args)
+		local ft = vim.bo[args.buf].filetype
+		vim.lsp.buf.format({
+			bufnr = args.buf,
+			async = false,
+			filter = function(c)
+				if ft == "java" then
+					return c.name == "jdtls"
+				end
+				return c.name == "null-ls" or c.name == "none-ls"
+			end,
+		})
+	end,
 })
