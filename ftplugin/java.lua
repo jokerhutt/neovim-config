@@ -26,6 +26,12 @@ if not root_dir or root_dir == "" then
 	return
 end
 
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+	border = "rounded", -- optional
+	max_width = 100, -- widen hover popup
+	max_height = 40, -- taller popup
+})
+
 -- Workspace per project
 local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
 local WORKSPACE = vim.fn.stdpath("cache") .. "/jdtls/" .. project_name

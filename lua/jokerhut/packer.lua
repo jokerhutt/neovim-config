@@ -28,8 +28,12 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "nvim-tree/nvim-web-devicons" },
+	})
+
 	use({ "goolord/alpha-nvim" })
-	use({ "nvimdev/dashboard-nvim" })
 
 	use({ "kdheepak/lazygit.nvim" })
 
@@ -42,12 +46,10 @@ return require("packer").startup(function(use)
 	use("nvim-tree/nvim-tree.lua")
 	use({ "nvim-tree/nvim-web-devicons" })
 
-	use({ "akinsho/bufferline.nvim", tag = "*" })
-
 	-- Color Theme
 	use({ "rose-pine/neovim", as = "rose-pine" })
 	use({ "arzg/vim-colors-xcode", as = "xcode" })
-	use("Mofiqul/dracula.nvim")
+	use({ "Mofiqul/dracula.nvim", as = "dracula" })
 	use({ "catppuccin/nvim", as = "catppuccin" })
 
 	use({ "AlexvZyl/nordic.nvim", as = "nordic" })

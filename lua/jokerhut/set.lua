@@ -19,6 +19,7 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
+vim.cmd.colorscheme("dracula")
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
@@ -30,4 +31,4 @@ vim.opt.colorcolumn = ""
 
 vim.opt.hidden = true
 
-vim.opt.showtabline = 2
+vim.opt.showtabline = 0

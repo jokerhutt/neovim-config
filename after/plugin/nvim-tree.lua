@@ -4,7 +4,7 @@ vim.opt.termguicolors = true
 
 require("nvim-tree").setup({
 	view = {
-		width = 30,
+		width = 40,
 		side = "left",
 	},
 	filters = {
