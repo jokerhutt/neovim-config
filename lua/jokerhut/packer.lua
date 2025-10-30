@@ -52,13 +52,7 @@ return require("packer").startup(function(use)
 	use({ "Mofiqul/dracula.nvim", as = "dracula" })
 	use({ "catppuccin/nvim", as = "catppuccin" })
 	use({ "AlexvZyl/nordic.nvim", as = "nordic" })
-
-	use({
-		"projekt0n/github-nvim-theme",
-		config = function()
-			require("github-theme").setup({})
-		end,
-	})
+	use({ "projekt0n/github-nvim-theme", as = "github" })
 
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 
