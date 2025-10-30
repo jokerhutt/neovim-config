@@ -1,0 +1,6 @@
+require("jokerhut.ui.lualine")
+require("jokerhut.ui.nvim-tree")
+require("jokerhut.ui.toggleterm")
+require("jokerhut.ui.term-compiler")
+require("jokerhut.ui.alpha")
+require("jokerhut.ui.markdown")
