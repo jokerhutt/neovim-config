@@ -1,0 +1,8 @@
+require("jokerhut.keymaps.general")
+require("jokerhut.keymaps.diagnostics")
+require("jokerhut.keymaps.clipboard")
+require("jokerhut.keymaps.compiler")
+require("jokerhut.keymaps.git")
+require("jokerhut.keymaps.misc")
+require("jokerhut.keymaps.navigation")
+require("jokerhut.keymaps.toggle")

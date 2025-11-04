@@ -14,6 +14,13 @@ require("nvim-tree").setup({
 		enable = true,
 		ignore = false,
 	},
+	renderer = {
+		indent_markers = { enable = true },
+		add_trailing = false,
+		group_empty = false,
+		highlight_git = true,
+		icons = { show = { file = true, folder = true, folder_arrow = true } },
+	},
 	actions = {
 		open_file = {
 			quit_on_open = false,

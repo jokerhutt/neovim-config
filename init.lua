@@ -2,7 +2,7 @@ vim.o.background = "dark"
 
 vim.o.termguicolors = true
 
-require("jokerhut.remap")
+require("jokerhut.keymaps")
 require("jokerhut.packer")
 require("jokerhut.set")
 print("hello jokerhut")
