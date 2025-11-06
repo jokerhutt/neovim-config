@@ -1,5 +1,5 @@
 require("jokerhut.ui.lualine")
-require("jokerhut.ui.nvim-tree")
+require("jokerhut.ui.neo-tree")
 require("jokerhut.ui.toggleterm")
 require("jokerhut.ui.term-compiler")
 require("jokerhut.ui.alpha")

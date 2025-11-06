@@ -10,6 +10,16 @@ return require("packer").startup(function(use)
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 
+	use({
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+		},
+	})
+
 	-- UI
 	use({
 		"stevearc/dressing.nvim",
@@ -52,7 +62,6 @@ return require("packer").startup(function(use)
 		"MunifTanjim/nui.nvim",
 	} })
 
-	use("nvim-tree/nvim-tree.lua")
 	use({ "nvim-tree/nvim-web-devicons" })
 
 	-- Color Theme
