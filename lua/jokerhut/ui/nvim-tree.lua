@@ -3,10 +3,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 require("nvim-tree").setup({
-	view = {
-		width = 40,
-		side = "left",
-	},
 	filters = {
 		dotfiles = false,
 	},
@@ -24,7 +20,7 @@ require("nvim-tree").setup({
 	actions = {
 		open_file = {
 			quit_on_open = false,
-			resize_window = true,
+			resize_window = false,
 			window_picker = { enable = false },
 		},
 	},
@@ -88,10 +84,12 @@ require("nvim-tree").setup({
 			local node = api.tree.get_node_under_cursor()
 			if node and node.type == "directory" then
 				api.tree.change_root(node.absolute_path)
+				vim.cmd.cd(node.absolute_path) -- <-- sets :pwd and terminal cwd
+				vim.notify("Changed working dir to " .. node.absolute_path)
 			else
 				vim.notify("Cursor is not on a directory", vim.log.levels.WARN)
 			end
-		end, "Change root to cursor dir")
+		end, "Change root and cd into cursor dir")
 
 		map("<leader>cu", api.tree.change_root_to_parent, "Change root to parent")
 	end,

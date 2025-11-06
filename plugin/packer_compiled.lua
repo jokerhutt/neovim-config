@@ -121,10 +121,7 @@ _G.packer_plugins = {
   },
   ["compiler.nvim"] = {
     commands = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo", "CompilerStop" },
-    config = { "\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rcompiler\frequire\0" },
-    load_after = {
-      ["overseer.nvim"] = true
-    },
+    config = { "\27LJ\2\nv\0\0\5\1\4\0\17-\0\0\0009\0\0\0005\2\1\0B\0\2\2\21\1\0\0)\2\0\0\1\2\1\0X\1\a€-\1\0\0009\1\2\1:\3\1\0'\4\3\0B\1\3\1+\1\2\0L\1\2\0+\1\1\0L\1\2\0\0À\frestart\15run_action\1\0\1\vunique\2\15list_tasks%\0\0\2\1\0\0\a-\0\0\0B\0\1\2\15\0\0\0X\1\2€+\0\1\0L\0\2\0K\0\1\0\1À›\1\1\0\a\0\n\0\0166\0\0\0'\2\1\0B\0\2\0023\1\2\0006\2\0\0'\4\3\0B\2\2\0029\2\4\0025\4\b\0005\5\6\0003\6\5\0=\6\a\5=\5\t\4B\2\2\0012\0\0€K\0\1\0\nhooks\1\0\1\nhooks\0\19before_compile\1\0\1\19before_compile\0\0\nsetup\rcompiler\0\roverseer\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -137,15 +134,19 @@ _G.packer_plugins = {
     url = "https://github.com/Mofiqul/dracula.nvim"
   },
   ["dressing.nvim"] = {
-    config = { "\27LJ\2\n÷\1\0\0\5\0\f\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\b\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0=\4\a\3=\3\t\0025\3\n\0=\3\v\2B\0\2\1K\0\1\0\ninput\1\0\3\16insert_only\1\17prefer_width\0032\rrelative\veditor\vselect\1\0\2\vselect\0\ninput\0\fbuiltin\1\0\1\20start_in_insert\1\fbackend\1\0\2\fbuiltin\0\fbackend\0\1\3\0\0\14telescope\fbuiltin\nsetup\rdressing\frequire\0" },
+    config = { "\27LJ\2\n÷\1\0\0\5\0\f\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\b\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0=\4\a\3=\3\t\0025\3\n\0=\3\v\2B\0\2\1K\0\1\0\ninput\1\0\3\rrelative\veditor\16insert_only\1\17prefer_width\0032\vselect\1\0\2\ninput\0\vselect\0\fbuiltin\1\0\1\20start_in_insert\1\fbackend\1\0\2\fbackend\0\fbuiltin\0\1\3\0\0\14telescope\fbuiltin\nsetup\rdressing\frequire\0" },
     loaded = true,
     path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/start/dressing.nvim",
     url = "https://github.com/stevearc/dressing.nvim"
   },
-  ["github-nvim-theme"] = {
-    config = { "\27LJ\2\n>\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\17github-theme\frequire\0" },
+  ["edgy.nvim"] = {
     loaded = true,
-    path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/start/github-nvim-theme",
+    path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/start/edgy.nvim",
+    url = "https://github.com/folke/edgy.nvim"
+  },
+  github = {
+    loaded = true,
+    path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/start/github",
     url = "https://github.com/projekt0n/github-nvim-theme"
   },
   harpoon = {
@@ -248,12 +249,9 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["overseer.nvim"] = {
-    after = { "compiler.nvim" },
-    config = { "\27LJ\2\n™\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\14task_list\1\0\1\14task_list\0\1\0\4\19default_detail\3\1\14direction\vbottom\15max_height\3\25\15min_height\3\25\nsetup\roverseer\frequire\0" },
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/opt/overseer.nvim",
+    config = { "\27LJ\2\nš\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\rstrategy\1\0\1\rstrategy\0\1\2\3\0\15toggleterm\18open_on_start\2\14direction\15horizontal\18close_on_exit\1\nsetup\roverseer\frequire\0" },
+    loaded = true,
+    path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/start/overseer.nvim",
     url = "https://github.com/stevearc/overseer.nvim"
   },
   ["packer.nvim"] = {
@@ -282,7 +280,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["toggleterm.nvim"] = {
-    config = { "\27LJ\2\n\127\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\4\14direction\15horizontal\17open_mapping\n<C-\\>\tsize\3\15\20shade_terminals\2\nsetup\15toggleterm\frequire\0" },
+    config = { "\27LJ\2\nT\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\14direction\15horizontal\nsetup\15toggleterm\frequire\0" },
     loaded = true,
     path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
@@ -315,50 +313,22 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
-local module_lazy_loads = {
-  ["^overseer"] = "overseer.nvim"
-}
-local lazy_load_called = {['packer.load'] = true}
-local function lazy_load_module(module_name)
-  local to_load = {}
-  if lazy_load_called[module_name] then return nil end
-  lazy_load_called[module_name] = true
-  for module_pat, plugin_name in pairs(module_lazy_loads) do
-    if not _G.packer_plugins[plugin_name].loaded and string.match(module_name, module_pat) then
-      to_load[#to_load + 1] = plugin_name
-    end
-  end
-
-  if #to_load > 0 then
-    require('packer.load')(to_load, {module = module_name}, _G.packer_plugins)
-    local loaded_mod = package.loaded[module_name]
-    if loaded_mod then
-      return function(modname) return loaded_mod end
-    end
-  end
-end
-
-if not vim.g.packer_custom_loader_enabled then
-  table.insert(package.loaders, 1, lazy_load_module)
-  vim.g.packer_custom_loader_enabled = true
-end
-
 -- Config for: leetcode.nvim
 time([[Config for leetcode.nvim]], true)
 try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "leetcode.nvim")
 time([[Config for leetcode.nvim]], false)
--- Config for: github-nvim-theme
-time([[Config for github-nvim-theme]], true)
-try_loadstring("\27LJ\2\n>\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\17github-theme\frequire\0", "config", "github-nvim-theme")
-time([[Config for github-nvim-theme]], false)
 -- Config for: dressing.nvim
 time([[Config for dressing.nvim]], true)
-try_loadstring("\27LJ\2\n÷\1\0\0\5\0\f\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\b\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0=\4\a\3=\3\t\0025\3\n\0=\3\v\2B\0\2\1K\0\1\0\ninput\1\0\3\16insert_only\1\17prefer_width\0032\rrelative\veditor\vselect\1\0\2\vselect\0\ninput\0\fbuiltin\1\0\1\20start_in_insert\1\fbackend\1\0\2\fbuiltin\0\fbackend\0\1\3\0\0\14telescope\fbuiltin\nsetup\rdressing\frequire\0", "config", "dressing.nvim")
+try_loadstring("\27LJ\2\n÷\1\0\0\5\0\f\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\b\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0=\4\a\3=\3\t\0025\3\n\0=\3\v\2B\0\2\1K\0\1\0\ninput\1\0\3\rrelative\veditor\16insert_only\1\17prefer_width\0032\vselect\1\0\2\ninput\0\vselect\0\fbuiltin\1\0\1\20start_in_insert\1\fbackend\1\0\2\fbackend\0\fbuiltin\0\1\3\0\0\14telescope\fbuiltin\nsetup\rdressing\frequire\0", "config", "dressing.nvim")
 time([[Config for dressing.nvim]], false)
 -- Config for: toggleterm.nvim
 time([[Config for toggleterm.nvim]], true)
-try_loadstring("\27LJ\2\n\127\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\4\14direction\15horizontal\17open_mapping\n<C-\\>\tsize\3\15\20shade_terminals\2\nsetup\15toggleterm\frequire\0", "config", "toggleterm.nvim")
+try_loadstring("\27LJ\2\nT\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\14direction\15horizontal\nsetup\15toggleterm\frequire\0", "config", "toggleterm.nvim")
 time([[Config for toggleterm.nvim]], false)
+-- Config for: overseer.nvim
+time([[Config for overseer.nvim]], true)
+try_loadstring("\27LJ\2\nš\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\rstrategy\1\0\1\rstrategy\0\1\2\3\0\15toggleterm\18open_on_start\2\14direction\15horizontal\18close_on_exit\1\nsetup\roverseer\frequire\0", "config", "overseer.nvim")
+time([[Config for overseer.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)

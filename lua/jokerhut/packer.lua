@@ -29,6 +29,15 @@ return require("packer").startup(function(use)
 	})
 
 	use({
+		"folke/edgy.nvim",
+		requires = {
+			"akinsho/toggleterm.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+	})
+
+	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "nvim-tree/nvim-web-devicons" },
 	})
@@ -62,9 +71,6 @@ return require("packer").startup(function(use)
 		tag = "*",
 		config = function()
 			require("toggleterm").setup({
-				size = 15,
-				open_mapping = [[<C-\>]],
-				shade_terminals = true,
 				direction = "horizontal",
 			})
 		end,
@@ -125,14 +131,17 @@ return require("packer").startup(function(use)
 	-- Ensures External Tools install
 	use("WhoIsSethDaniel/mason-tool-installer.nvim")
 
-	-- Auto Compiler Stuff
 	use({
 		"stevearc/overseer.nvim",
 		commit = "6271cab7ccc4ca840faa93f54440ffae3a3918bd",
-		module = "overseer",
 		config = function()
 			require("overseer").setup({
-				task_list = { direction = "bottom", min_height = 25, max_height = 25, default_detail = 1 },
+				strategy = {
+					"toggleterm",
+					direction = "horizontal",
+					open_on_start = true,
+					close_on_exit = false,
+				},
 			})
 		end,
 	})
@@ -140,10 +149,30 @@ return require("packer").startup(function(use)
 	use({
 		"Zeioth/compiler.nvim",
 		requires = { "stevearc/overseer.nvim", "nvim-telescope/telescope.nvim" },
-		after = "overseer.nvim",
 		cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo", "CompilerStop" },
 		config = function()
-			require("compiler").setup({})
+			local overseer = require("overseer")
+
+			local function reuse_first_task()
+				local tasks = overseer.list_tasks({ unique = true })
+				if #tasks > 0 then
+					-- restart the first one
+					overseer.run_action(tasks[1], "restart")
+					return true
+				end
+				return false
+			end
+
+			require("compiler").setup({
+				hooks = {
+					before_compile = function()
+						-- If a task exists, restart it and skip spawning a new one
+						if reuse_first_task() then
+							return false
+						end
+					end,
+				},
+			})
 		end,
 	})
 
