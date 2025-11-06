@@ -1,5 +1,3 @@
--- lua/jokerhut/ui/neo-tree.lua
-
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
@@ -15,21 +13,28 @@ neotree.setup({
 	enable_git_status = true,
 	enable_diagnostics = false,
 
-	-- top-level window mappings (valid names only)
+	default_component_configs = {
+		indent = {
+			indent_size = 2,
+			padding = 1,
+			with_markers = true,
+			indent_marker = "│",
+			last_indent_marker = "└",
+		},
+	},
+
 	window = {
 		mappings = {
 			["<cr>"] = function(state)
 				local node = state.tree:get_node()
 
 				if node.path == state.path then
-					-- root folder → go up one level via public API
 					vim.cmd("Neotree reveal_force_cwd dir=" .. vim.fn.fnameescape(vim.fn.fnamemodify(state.path, ":h")))
 					vim.cmd("cd " .. vim.fn.fnameescape(vim.fn.fnamemodify(state.path, ":h")))
 					vim.notify("Moved up to " .. vim.fn.fnamemodify(state.path, ":h"))
 					return
 				end
 
-				-- otherwise open as normal
 				require("neo-tree.sources.filesystem.commands").open(state)
 			end,
 
@@ -63,7 +68,6 @@ neotree.setup({
 	},
 })
 
--- <leader>cd: re-root Neo-tree via public API and :cd
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "neo-tree",
 	callback = function(ev)
@@ -87,7 +91,6 @@ vim.api.nvim_create_autocmd("FileType", {
 			end
 
 			local dir = vim.fn.fnameescape(node.path)
-			-- Public, stable interface in v3+
 			vim.cmd("Neotree dir=" .. dir)
 			vim.cmd("cd " .. dir)
 			vim.notify("Changed working dir to " .. node.path)
@@ -95,7 +98,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- Focus swap: neo-tree ↔ last window
 local last_normal_win = nil
 vim.api.nvim_create_autocmd("WinEnter", {
 	callback = function()
