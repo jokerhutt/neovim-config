@@ -1,7 +1,7 @@
 local LanguagesConfig = {
 
 	python = {
-		server = "pyright",
+		server = "basedpyright",
 	},
 
 	java = {

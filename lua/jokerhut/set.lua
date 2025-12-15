@@ -3,7 +3,7 @@ vim.opt.nu = true
 
 -- Relative Line Numbers
 vim.opt.relativenumber = true
-
+vim.opt.sidescrolloff = 12
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4

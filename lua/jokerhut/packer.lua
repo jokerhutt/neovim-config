@@ -69,8 +69,17 @@ return require("packer").startup(function(use)
 	use({ "arzg/vim-colors-xcode", as = "xcode" })
 	use({ "Mofiqul/dracula.nvim", as = "dracula" })
 	use({ "catppuccin/nvim", as = "catppuccin" })
+	use({
+		"marko-cerovac/material.nvim",
+		as = "material",
+	})
 	use({ "AlexvZyl/nordic.nvim", as = "nordic" })
 	use({ "projekt0n/github-nvim-theme", as = "github" })
+	use({ "martinsione/darkplus.nvim", as = "darkplus" })
+	use({
+		"Mofiqul/vscode.nvim",
+		opt = false,
+	})
 
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 
