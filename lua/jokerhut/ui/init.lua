@@ -1,4 +1,5 @@
 require("jokerhut.ui.lualine")
+require("jokerhut.ui.win")
 require("jokerhut.ui.neo-tree")
 require("jokerhut.ui.toggleterm")
 require("jokerhut.ui.term-compiler")

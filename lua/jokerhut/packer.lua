@@ -39,6 +39,11 @@ return require("packer").startup(function(use)
 	})
 
 	use({
+		"folke/snacks.nvim",
+		opts = {},
+	})
+
+	use({
 		"folke/edgy.nvim",
 		requires = {
 			"akinsho/toggleterm.nvim",

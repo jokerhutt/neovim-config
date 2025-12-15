@@ -139,7 +139,7 @@ _G.packer_plugins = {
     url = "https://github.com/Mofiqul/dracula.nvim"
   },
   ["dressing.nvim"] = {
-    config = { "\27LJ\2\n÷\1\0\0\5\0\f\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\b\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0=\4\a\3=\3\t\0025\3\n\0=\3\v\2B\0\2\1K\0\1\0\ninput\1\0\3\17prefer_width\0032\16insert_only\1\rrelative\veditor\vselect\1\0\2\ninput\0\vselect\0\fbuiltin\1\0\1\20start_in_insert\1\fbackend\1\0\2\fbuiltin\0\fbackend\0\1\3\0\0\14telescope\fbuiltin\nsetup\rdressing\frequire\0" },
+    config = { "\27LJ\2\n÷\1\0\0\5\0\f\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\b\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0=\4\a\3=\3\t\0025\3\n\0=\3\v\2B\0\2\1K\0\1\0\ninput\1\0\3\16insert_only\1\rrelative\veditor\17prefer_width\0032\vselect\1\0\2\ninput\0\vselect\0\fbuiltin\1\0\1\20start_in_insert\1\fbackend\1\0\2\fbuiltin\0\fbackend\0\1\3\0\0\14telescope\fbuiltin\nsetup\rdressing\frequire\0" },
     loaded = true,
     path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/start/dressing.nvim",
     url = "https://github.com/stevearc/dressing.nvim"
@@ -259,7 +259,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["overseer.nvim"] = {
-    config = { "\27LJ\2\nš\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\rstrategy\1\0\1\rstrategy\0\1\2\3\0\15toggleterm\14direction\15horizontal\18close_on_exit\1\18open_on_start\2\nsetup\roverseer\frequire\0" },
+    config = { "\27LJ\2\nš\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\rstrategy\1\0\1\rstrategy\0\1\2\3\0\15toggleterm\18open_on_start\2\14direction\15horizontal\18close_on_exit\1\nsetup\roverseer\frequire\0" },
     loaded = true,
     path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/start/overseer.nvim",
     url = "https://github.com/stevearc/overseer.nvim"
@@ -283,6 +283,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/start/rose-pine",
     url = "https://github.com/rose-pine/neovim"
+  },
+  ["snacks.nvim"] = {
+    loaded = true,
+    path = "/Users/davidglogowski/.local/share/nvim/site/pack/packer/start/snacks.nvim",
+    url = "https://github.com/folke/snacks.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
@@ -333,18 +338,18 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: dressing.nvim
-time([[Config for dressing.nvim]], true)
-try_loadstring("\27LJ\2\n÷\1\0\0\5\0\f\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\b\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0=\4\a\3=\3\t\0025\3\n\0=\3\v\2B\0\2\1K\0\1\0\ninput\1\0\3\17prefer_width\0032\16insert_only\1\rrelative\veditor\vselect\1\0\2\ninput\0\vselect\0\fbuiltin\1\0\1\20start_in_insert\1\fbackend\1\0\2\fbuiltin\0\fbackend\0\1\3\0\0\14telescope\fbuiltin\nsetup\rdressing\frequire\0", "config", "dressing.nvim")
-time([[Config for dressing.nvim]], false)
+-- Config for: overseer.nvim
+time([[Config for overseer.nvim]], true)
+try_loadstring("\27LJ\2\nš\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\rstrategy\1\0\1\rstrategy\0\1\2\3\0\15toggleterm\18open_on_start\2\14direction\15horizontal\18close_on_exit\1\nsetup\roverseer\frequire\0", "config", "overseer.nvim")
+time([[Config for overseer.nvim]], false)
 -- Config for: leetcode.nvim
 time([[Config for leetcode.nvim]], true)
 try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "leetcode.nvim")
 time([[Config for leetcode.nvim]], false)
--- Config for: overseer.nvim
-time([[Config for overseer.nvim]], true)
-try_loadstring("\27LJ\2\nš\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\rstrategy\1\0\1\rstrategy\0\1\2\3\0\15toggleterm\14direction\15horizontal\18close_on_exit\1\18open_on_start\2\nsetup\roverseer\frequire\0", "config", "overseer.nvim")
-time([[Config for overseer.nvim]], false)
+-- Config for: dressing.nvim
+time([[Config for dressing.nvim]], true)
+try_loadstring("\27LJ\2\n÷\1\0\0\5\0\f\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\b\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0=\4\a\3=\3\t\0025\3\n\0=\3\v\2B\0\2\1K\0\1\0\ninput\1\0\3\16insert_only\1\rrelative\veditor\17prefer_width\0032\vselect\1\0\2\ninput\0\vselect\0\fbuiltin\1\0\1\20start_in_insert\1\fbackend\1\0\2\fbuiltin\0\fbackend\0\1\3\0\0\14telescope\fbuiltin\nsetup\rdressing\frequire\0", "config", "dressing.nvim")
+time([[Config for dressing.nvim]], false)
 -- Config for: toggleterm.nvim
 time([[Config for toggleterm.nvim]], true)
 try_loadstring("\27LJ\2\nT\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\14direction\15horizontal\nsetup\15toggleterm\frequire\0", "config", "toggleterm.nvim")
@@ -352,20 +357,6 @@ time([[Config for toggleterm.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.api.nvim_create_user_command, 'CompilerOpen', function(cmdargs)
-          require('packer.load')({'compiler.nvim'}, { cmd = 'CompilerOpen', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'compiler.nvim'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('CompilerOpen ', 'cmdline')
-      end})
-pcall(vim.api.nvim_create_user_command, 'CompilerToggleResults', function(cmdargs)
-          require('packer.load')({'compiler.nvim'}, { cmd = 'CompilerToggleResults', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'compiler.nvim'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('CompilerToggleResults ', 'cmdline')
-      end})
 pcall(vim.api.nvim_create_user_command, 'CompilerRedo', function(cmdargs)
           require('packer.load')({'compiler.nvim'}, { cmd = 'CompilerRedo', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
@@ -379,6 +370,20 @@ pcall(vim.api.nvim_create_user_command, 'CompilerStop', function(cmdargs)
         {nargs = '*', range = true, bang = true, complete = function()
           require('packer.load')({'compiler.nvim'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('CompilerStop ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'CompilerOpen', function(cmdargs)
+          require('packer.load')({'compiler.nvim'}, { cmd = 'CompilerOpen', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'compiler.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('CompilerOpen ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'CompilerToggleResults', function(cmdargs)
+          require('packer.load')({'compiler.nvim'}, { cmd = 'CompilerToggleResults', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'compiler.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('CompilerToggleResults ', 'cmdline')
       end})
 time([[Defining lazy-load commands]], false)
 
