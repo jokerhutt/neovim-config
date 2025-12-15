@@ -22,9 +22,10 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
-vim.cmd.colorscheme("dracula")
 
-vim.opt.scrolloff = 8
+-- minimum number of lines to show below or active the cursor
+vim.opt.scrolloff = 10
+
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 

@@ -76,6 +76,7 @@ return require("packer").startup(function(use)
 	use({ "AlexvZyl/nordic.nvim", as = "nordic" })
 	use({ "projekt0n/github-nvim-theme", as = "github" })
 	use({ "martinsione/darkplus.nvim", as = "darkplus" })
+	use({ "folke/tokyonight.nvim", as = "tokyonight" })
 	use({
 		"Mofiqul/vscode.nvim",
 		opt = false,
@@ -174,7 +175,6 @@ return require("packer").startup(function(use)
 			local function reuse_first_task()
 				local tasks = overseer.list_tasks({ unique = true })
 				if #tasks > 0 then
-					-- restart the first one
 					overseer.run_action(tasks[1], "restart")
 					return true
 				end
@@ -184,7 +184,6 @@ return require("packer").startup(function(use)
 			require("compiler").setup({
 				hooks = {
 					before_compile = function()
-						-- If a task exists, restart it and skip spawning a new one
 						if reuse_first_task() then
 							return false
 						end

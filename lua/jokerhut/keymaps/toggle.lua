@@ -7,3 +7,4 @@ vim.keymap.set(
 )
 
 vim.keymap.set("n", "<leader>ot", ":ToggleTerm<CR>")
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { silent = true })

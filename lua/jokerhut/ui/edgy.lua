@@ -5,7 +5,7 @@ vim.opt.splitright = true
 
 require("edgy").setup({
 	left = {
-		{ ft = "NvimTree", pinned = true },
+		{ ft = "neo-tree", pinned = true },
 	},
 	right = {
 		{ ft = "OverseerList", title = "Tasks" },
@@ -16,7 +16,7 @@ require("edgy").setup({
 		{ ft = "qf", title = "Problems" },
 	},
 	options = {
-		left = { size = 35 },
+		left = { size = 40 },
 		bottom = { size = 14 },
 		right = { size = 50 },
 	},
