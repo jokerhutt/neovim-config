@@ -5,12 +5,14 @@ return {
 		vm = {
 			label = "Dev VM",
 			alias = "yourvm",
+            ssh = "ssh yourvm"
 			group = "dev",
 		},
 
 		homelab = {
 			label = "Homelab",
 			alias = "yourhomelab",
+            ssh = "ssh yourhomelab"
 			group = "infra",
 		},
 	},

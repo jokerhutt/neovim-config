@@ -1,14 +1,25 @@
 local win = require("jokerhut.ui.win")
 
+local ssh_mode = "iterm"
+
 -- Verify ssh.lua exists
 local ok, ssh = pcall(require, "jokerhut.workflow.ssh.ssh")
 if not ok then
-	vim.notify("Missing ssh.lua", vim.log.levels.WARN)
+	vim.notify("missing ssh.lua", vim.log.levels.warn)
 	return
 end
 
+local ok, iterm = pcall(require, "jokerhut.workflow.iterm.iterm")
+if not ok then
+	ssh_mode = "toggleterm"
+end
+
 local function SSHIn(host)
-	vim.cmd(("TermExec direction=float cmd='ssh %s'"):format(host.alias))
+	if ssh_mode == "iterm" then
+		iterm.iterm_tab("ssh " .. host.alias)
+	else
+		vim.cmd(("TermExec direction=float cmd='ssh %s'"):format(host.alias))
+	end
 end
 
 -- Leader + SL toggles view of ssh configs
