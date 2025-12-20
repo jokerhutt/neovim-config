@@ -14,7 +14,6 @@ require("lualine").setup({
 		lualine_z = { "location" },
 	},
 	winbar = {
-		-- Top Bar Control
 		lualine_c = { { "filename", path = 1 } },
 	},
 	inactive_winbar = {

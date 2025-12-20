@@ -16,7 +16,7 @@ end
 
 local function SSHIn(host)
 	if ssh_mode == "iterm" then
-		iterm.iterm_tab("ssh " .. host.alias)
+		iterm.iterm_tab(host.ssh)
 	else
 		vim.cmd(("TermExec direction=float cmd='ssh %s'"):format(host.alias))
 	end

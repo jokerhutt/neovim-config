@@ -1,7 +1,9 @@
 local presets = require("markview.presets")
 
 require("markview").setup({
-	markdown = { headings = presets.headings.glow },
+	markdown = {
+		headings = presets.headings.underline,
+	},
 })
 
 vim.api.nvim_create_autocmd("BufWritePost", {

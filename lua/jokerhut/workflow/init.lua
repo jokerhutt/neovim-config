@@ -1,4 +1,5 @@
 require("jokerhut.workflow.iterm.iterm")
+require("jokerhut.workflow.diagnostic.error-modal")
 require("jokerhut.workflow.ssh.ssh-flow")
 require("jokerhut.workflow.docker.commands")
 require("jokerhut.workflow.docker.dashboard")
