@@ -4,11 +4,25 @@ local lspconfig = require("lspconfig")
 local caps = require("cmp_nvim_lsp").default_capabilities()
 
 require("mason-lspconfig").setup({
-	ensure_installed = { "lua_ls", "ts_ls", "basedpyright", "bashls", "clangd", "jdtls" },
+	ensure_installed = { "lua_ls", "tailwindcss", "ts_ls", "basedpyright", "bashls", "clangd", "jdtls" },
 	handlers = {
 		function(server)
 			lspconfig[server].setup({ capabilities = caps })
 		end,
 		["jdtls"] = function() end,
+
+		["tailwindcss"] = function()
+			lspconfig.tailwindcss.setup({
+				capabilities = caps,
+				filetypes = {
+					"html",
+					"css",
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescriptreact",
+				},
+			})
+		end,
 	},
 })

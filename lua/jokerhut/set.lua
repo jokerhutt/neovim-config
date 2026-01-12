@@ -7,11 +7,21 @@ vim.opt.sidescrolloff = 12
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.mouse = "a"
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "markdown",
+	callback = function()
+		vim.opt_local.wrap = true
+		vim.opt_local.linebreak = true
+		vim.opt_local.breakindent = true
+	end,
+})
 
 vim.opt.swapfile = false
 vim.opt.backup = false
