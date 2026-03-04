@@ -1,2 +1,3 @@
 *.env
 ssh.lua
+plugin/packer_compiled.lua

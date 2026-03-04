@@ -14,6 +14,9 @@ require("mason-lspconfig").setup({
 		["yamlls"] = function()
 			lspconfig.yamlls.setup({
 				capabilities = caps,
+				root_dir = function()
+					return vim.fn.getcwd()
+				end,
 				settings = {
 					yaml = {
 						validate = true,
