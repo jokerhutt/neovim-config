@@ -53,3 +53,9 @@ vim.keymap.set("n", "<leader>ob", toggle_transparency, { desc = "Toggle backgrou
 
 vim.keymap.set("n", "<leader>ot", ":ToggleTerm<CR>")
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { silent = true })
+
+-- Diffview: open/close repo diff
+vim.keymap.set("n", "<leader>od", "<cmd>DiffviewToggle<CR>", { desc = "Toggle Diffview (repo diff)" })
+
+-- Diffview: file history (current file)
+vim.keymap.set("n", "<leader>oh", "<cmd>DiffviewFileHistory %<CR>", { desc = "File history (current file)" })

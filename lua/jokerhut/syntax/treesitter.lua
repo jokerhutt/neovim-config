@@ -1,3 +1,14 @@
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+parser_config.mdx = {
+	install_info = {
+		url = "https://github.com/tree-sitter/tree-sitter-mdx",
+		files = { "src/parser.c", "src/scanner.c" },
+		branch = "main",
+	},
+	filetype = "mdx",
+}
+
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {
 		"c",
@@ -14,6 +25,7 @@ require("nvim-treesitter.configs").setup({
 		"toml",
 		"lua",
 		"java",
+		"mdx",
 		"javascript",
 		"python",
 		"typescript",
@@ -42,5 +54,11 @@ vim.filetype.add({
 	filename = {
 		[".env"] = "sh",
 		[".env.local"] = "sh",
+	},
+})
+
+vim.filetype.add({
+	extension = {
+		mdx = "mdx",
 	},
 })

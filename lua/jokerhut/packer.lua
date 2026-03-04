@@ -61,6 +61,8 @@ return require("packer").startup(function(use)
 
 	use({ "kdheepak/lazygit.nvim" })
 
+	use({ "sindrets/diffview.nvim" })
+
 	use({ "OXY2DEV/markview.nvim" })
 
 	use({ "MaximilianLloyd/ascii.nvim", requires = {

@@ -59,7 +59,7 @@ local function open_docker_manager(host)
 	})
 end
 
-vim.keymap.set("n", "<leader>od", function()
+vim.keymap.set("n", "<leader>dv", function()
 	local items = vim.tbl_values(ssh.hosts)
 
 	vim.ui.select(items, {
