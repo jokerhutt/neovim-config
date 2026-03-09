@@ -2,7 +2,7 @@
 vim.keymap.set("n", "<leader>md", "<cmd>Markview splitToggle<CR>", { desc = "Toggle markdown preview split" })
 
 -- UNDO TREE --
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle undo tree" })
 
 -- LEETCODE --
 vim.keymap.set("n", "<leader>lc", "<cmd>Leet<CR>", { silent = true })

@@ -51,7 +51,7 @@ end
 
 vim.keymap.set("n", "<leader>ob", toggle_transparency, { desc = "Toggle background transparency" })
 
-vim.keymap.set("n", "<leader>ot", ":ToggleTerm<CR>")
+vim.keymap.set("n", "<leader>ot", ":ToggleTerm<CR>", { desc = "Toggle terminal" })
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { silent = true })
 
 -- Diffview: open/close repo diff
