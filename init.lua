@@ -2,6 +2,8 @@ vim.o.background = "dark"
 
 vim.o.termguicolors = true
 
+vim.o.cursorline = true
+
 require("jokerhut.keymaps")
 require("jokerhut.packer")
 require("jokerhut.set")
