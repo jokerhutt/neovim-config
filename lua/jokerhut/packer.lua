@@ -118,6 +118,19 @@ return require("packer").startup(function(use)
 	-- TreeSitter
 	use("nvim-treesitter/playground")
 
+	use({
+		"nvim-treesitter/nvim-treesitter-context",
+		requires = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("treesitter-context").setup({
+				enable = true,
+				max_lines = 4,
+				trim_scope = "outer",
+				mode = "cursor",
+			})
+		end,
+	})
+
 	-- Harpoon
 	use({
 		"ThePrimeagen/harpoon",

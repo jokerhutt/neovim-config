@@ -1,3 +1,18 @@
+require("catppuccin").setup({
+	integrations = {
+		cmp = true,
+		neotree = true,
+		harpoon = true,
+		telescope = {
+			enabled = true,
+		},
+		alpha = true,
+		overseer = true,
+		mason = true,
+		markview = true,
+	},
+})
+
 function ColorMyPencils(color)
 	color = color or "catppuccin-macchiato"
 
