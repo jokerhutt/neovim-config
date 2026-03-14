@@ -14,7 +14,7 @@ require("catppuccin").setup({
 })
 
 function ColorMyPencils(color)
-	color = color or "catppuccin-macchiato"
+	color = color or "tokyonight-night"
 
 	if color == "tokyonight-night" then
 		vim.g.tokyonight_style = "night"
