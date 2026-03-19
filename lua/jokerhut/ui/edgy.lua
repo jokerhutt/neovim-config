@@ -9,7 +9,6 @@ require("edgy").setup({
 	},
 	right = {
 		{ ft = "OverseerList", title = "Tasks" },
-		{ ft = "OverseerOutput", title = "Task Output" },
 	},
 	bottom = {
 		{ ft = "toggleterm", title = "Terminal" },

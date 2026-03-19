@@ -1,20 +1,23 @@
-require("catppuccin").setup({
-	integrations = {
-		cmp = true,
-		neotree = true,
-		harpoon = true,
-		telescope = {
-			enabled = true,
-		},
-		alpha = true,
-		overseer = true,
-		mason = true,
-		markview = true,
-	},
-})
-
 function ColorMyPencils(color)
-	color = color or "tokyonight-night"
+	color = color or "rose-pine"
+
+	if color == "catpuccin" then
+		require("catpuccin").setup({
+
+			integrations = {
+				cmp = true,
+				neotree = true,
+				harpoon = true,
+				telescope = {
+					enabled = true,
+				},
+				alpha = true,
+				overseer = true,
+				mason = true,
+				markview = true,
+			},
+		})
+	end
 
 	if color == "tokyonight-night" then
 		vim.g.tokyonight_style = "night"
@@ -28,9 +31,12 @@ end
 
 ColorMyPencils()
 
-vim.keymap.set("n", "<leader>cc", function()
-	vim.ui.select({
+local M = {}
+
+function M.SelectColorscheme()
+	local themes = {
 		"tokyonight-night",
+		"vague",
 		"dracula",
 		"dracula-soft",
 		"material-palenight",
@@ -43,9 +49,13 @@ vim.keymap.set("n", "<leader>cc", function()
 		"github_dark_dimmed",
 		"nordic",
 		"xcode",
-	}, { prompt = "Select Colorscheme:" }, function(choice)
+	}
+
+	vim.ui.select(themes, { prompt = "Select Colorscheme:" }, function(choice)
 		if choice then
 			ColorMyPencils(choice)
 		end
 	end)
-end, { desc = "Change colorscheme" })
+end
+
+return M
