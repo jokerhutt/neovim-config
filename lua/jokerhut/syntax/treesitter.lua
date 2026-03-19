@@ -36,7 +36,7 @@ require("nvim-treesitter.configs").setup({
 	indent = { enable = true, disable = { "ruby" } },
 })
 
--- Tell NVim to treat .env files as shell
+-- Treat Env as shell
 vim.filetype.add({
 	extension = {
 		env = "sh",

@@ -3,12 +3,14 @@ vim.cmd([[packadd packer.nvim]])
 return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
-	-- Telescope Config
+	-- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
+
+	-- Neo Tree
 
 	use({
 		"nvim-neo-tree/neo-tree.nvim",
@@ -18,21 +20,6 @@ return require("packer").startup(function(use)
 			"nvim-tree/nvim-web-devicons",
 			"MunifTanjim/nui.nvim",
 		},
-	})
-
-	use({
-		"folke/which-key.nvim",
-		config = function()
-			require("which-key").setup({})
-		end,
-	})
-
-	use({
-		"folke/todo-comments.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("todo-comments").setup({})
-		end,
 	})
 
 	-- UI
@@ -56,6 +43,21 @@ return require("packer").startup(function(use)
 	use({
 		"folke/snacks.nvim",
 		opts = {},
+	})
+
+	use({
+		"folke/which-key.nvim",
+		config = function()
+			require("which-key").setup({})
+		end,
+	})
+
+	use({
+		"folke/todo-comments.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("todo-comments").setup({})
+		end,
 	})
 
 	use({
@@ -94,6 +96,12 @@ return require("packer").startup(function(use)
 	use({
 		"marko-cerovac/material.nvim",
 		as = "material",
+	})
+	use({
+		"vague-theme/vague.nvim",
+		config = function()
+			require("vague").setup({})
+		end,
 	})
 	use({ "AlexvZyl/nordic.nvim", as = "nordic" })
 	use({ "projekt0n/github-nvim-theme", as = "github" })
@@ -196,34 +204,7 @@ return require("packer").startup(function(use)
 					open_on_start = true,
 					close_on_exit = false,
 				},
-			})
-		end,
-	})
-
-	use({
-		"Zeioth/compiler.nvim",
-		requires = { "stevearc/overseer.nvim", "nvim-telescope/telescope.nvim" },
-		cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo", "CompilerStop" },
-		config = function()
-			local overseer = require("overseer")
-
-			local function reuse_first_task()
-				local tasks = overseer.list_tasks({ unique = true })
-				if #tasks > 0 then
-					overseer.run_action(tasks[1], "restart")
-					return true
-				end
-				return false
-			end
-
-			require("compiler").setup({
-				hooks = {
-					before_compile = function()
-						if reuse_first_task() then
-							return false
-						end
-					end,
-				},
+				templates = { "builtin" },
 			})
 		end,
 	})
