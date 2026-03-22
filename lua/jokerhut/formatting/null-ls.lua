@@ -12,6 +12,7 @@ pcall(function()
 			"shfmt",
 			"clang-format",
 			"cppcheck",
+			"eslint_d",
 		},
 		automatic_installation = true,
 	})
@@ -27,6 +28,8 @@ null_ls.setup({
 	sources = {
 		-- Web
 		null_ls.builtins.formatting.prettier,
+		require("none-ls.diagnostics.eslint_d"),
+
 		-- Lua
 		null_ls.builtins.formatting.stylua,
 		-- Python
