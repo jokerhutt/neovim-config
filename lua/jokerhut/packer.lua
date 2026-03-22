@@ -177,6 +177,9 @@ return require("packer").startup(function(use)
 	use("williamboman/mason.nvim") -- LSP/DAP/Linter/Formatter installer
 	use("williamboman/mason-lspconfig.nvim") -- bridges mason + lspconfig
 
+	-- Linter
+	use("mfussenegger/nvim-lint")
+
 	-- CMP
 	use({
 		"hrsh7th/nvim-cmp",
