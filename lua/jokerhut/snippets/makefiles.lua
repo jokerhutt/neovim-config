@@ -26,8 +26,14 @@ function M.create_make_file()
 
 	local content = string.format(
 		[[
+BIN_DIR=bin
+
 run:
-	gcc %s -o %s && ./%s
+	mkdir -p $(BIN_DIR)
+	gcc %s -o $(BIN_DIR)/%s && ./$(BIN_DIR)/%s
+
+clean:
+	rm -rf $(BIN_DIR)
 ]],
 		filename,
 		name,
