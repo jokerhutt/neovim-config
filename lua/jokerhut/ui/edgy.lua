@@ -7,11 +7,7 @@ require("edgy").setup({
 	left = {
 		{ ft = "neo-tree", pinned = true },
 	},
-	right = {
-		{ ft = "OverseerList", title = "Tasks" },
-	},
 	bottom = {
-		{ ft = "toggleterm", title = "Terminal" },
 		{ ft = "qf", title = "Problems" },
 	},
 	options = {

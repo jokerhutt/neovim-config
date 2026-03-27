@@ -1,5 +1,5 @@
 function ColorMyPencils(color)
-	color = color or "rose-pine"
+	color = color or "rose-pine-moon"
 
 	if color == "catpuccin" then
 		require("catpuccin").setup({
@@ -46,6 +46,7 @@ function M.SelectColorscheme()
 		"catppuccin-mocha",
 		"catppuccin-frappe",
 		"rose-pine",
+		"rose-pine-moon",
 		"github_dark_dimmed",
 		"nordic",
 		"xcode",
