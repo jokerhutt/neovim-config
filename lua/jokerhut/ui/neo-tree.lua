@@ -23,6 +23,8 @@ neotree.setup({
 	},
 
 	window = {
+		winbar = false,
+
 		mappings = {
 			["<cr>"] = function(state)
 				local node = state.tree:get_node()
@@ -59,6 +61,9 @@ neotree.setup({
 	},
 
 	filesystem = {
+		window = {
+			winbar = "",
+		},
 		follow_current_file = { enabled = true, leave_dirs_open = false },
 		filtered_items = { hide_dotfiles = false },
 		group_empty_dirs = false,
@@ -131,3 +136,11 @@ local function toggle_focus_tree_or_last()
 end
 
 vim.keymap.set("n", "<leader>pv", toggle_focus_tree_or_last, { desc = "Focus swap: neo-tree ↔ last window" })
+
+vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter" }, {
+	callback = function()
+		if vim.bo.filetype == "neo-tree" then
+			vim.wo.winbar = ""
+		end
+	end,
+})

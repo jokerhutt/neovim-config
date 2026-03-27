@@ -22,6 +22,9 @@ return require("packer").startup(function(use)
 		},
 	})
 
+	-- rainbow highlights
+	use("HiPhish/rainbow-delimiters.nvim")
+
 	-- UI
 	use({
 		"stevearc/dressing.nvim",
@@ -120,7 +123,14 @@ return require("packer").startup(function(use)
 		tag = "*",
 		config = function()
 			require("toggleterm").setup({
-				direction = "horizontal",
+				size = function(term)
+					if term.direction == "vertical" then
+						return 80
+					elseif term.direction == "horizontal" then
+						return 15
+					end
+				end,
+				shade_terminals = false,
 			})
 		end,
 	})
@@ -176,6 +186,19 @@ return require("packer").startup(function(use)
 	use("neovim/nvim-lspconfig") -- basic LSP support
 	use("williamboman/mason.nvim") -- LSP/DAP/Linter/Formatter installer
 	use("williamboman/mason-lspconfig.nvim") -- bridges mason + lspconfig
+
+	use({
+		"nvimdev/lspsaga.nvim",
+		requires = {
+			"nvim-tree/nvim-web-devicons",
+			"nvim-lua/plenary.nvim",
+		},
+		config = function()
+			require("lspsaga").setup({
+				lightbulb = { enable = false },
+			})
+		end,
+	})
 
 	-- Linter
 	use("mfussenegger/nvim-lint")

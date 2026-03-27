@@ -1,6 +1,7 @@
 require("jokerhut.keymaps.general")
 require("jokerhut.keymaps.diagnostics")
 require("jokerhut.keymaps.colors")
+require("jokerhut.keymaps.lsp")
 require("jokerhut.keymaps.clipboard")
 require("jokerhut.keymaps.overseer")
 require("jokerhut.keymaps.git")

@@ -6,7 +6,8 @@ vim.keymap.set("n", "<leader>oe", ":Neotree filesystem toggle left<CR>", { desc 
 
 vim.keymap.set("n", "<leader>ob", transparency.toggle_transparency, { desc = "Toggle background transparency" })
 
-vim.keymap.set("n", "<leader>ot", ":ToggleTerm<CR>", { desc = "Toggle terminal" })
+vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm direction=horizontal<CR>")
+vim.keymap.set("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>")
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { silent = true })
 
 -- Diffview: open/close repo diff
