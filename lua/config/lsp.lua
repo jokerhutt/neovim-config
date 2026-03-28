@@ -15,9 +15,14 @@ require("mason-lspconfig").setup({
     "jdtls",
   },
   handlers = {
-    function(server)
-      lspconfig[server].setup({ capabilities = caps })
-    end,
+  function(server)
+    lspconfig[server].setup({
+                              capabilities = caps,
+      on_attach = function(client)
+        client.server_capabilities.documentFormattingProvider = false
+      end,
+    })
+  end,
 
     ["jdtls"] = function() end,
 

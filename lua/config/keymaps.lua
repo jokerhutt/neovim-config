@@ -57,3 +57,7 @@ vim.keymap.set("n", "<leader>od", "<cmd>DiffviewToggle<CR>", { desc = "Toggle Di
 
 -- Diffview: file history (current file)
 vim.keymap.set("n", "<leader>oh", "<cmd>DiffviewFileHistory %<CR>", { desc = "File history (current file)" })
+
+-- SNIPPETS --
+
+vim.keymap.set("n", "<leader>mf", require("utils.makefiles").create_make_file, { desc = "Create make file at cursor file" })
