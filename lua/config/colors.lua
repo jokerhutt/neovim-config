@@ -1,8 +1,12 @@
+vim.api.nvim_set_hl(0, "ToggleTermNormal", { link = "Normal" })
+vim.api.nvim_set_hl(0, "NormalNC", { link = "Normal" })
+vim.api.nvim_set_hl(0, "ToggleTermBorder", { link = "Normal" })
+
 function ColorMyPencils(color)
 	color = color or "rose-pine-moon"
 
-	if color == "catpuccin" then
-		require("catpuccin").setup({
+	if color == "catppuccin" then
+		require("catppuccin").setup({
 
 			integrations = {
 				cmp = true,
@@ -60,3 +64,24 @@ function M.SelectColorscheme()
 end
 
 return M
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

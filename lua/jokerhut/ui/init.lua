@@ -1,7 +1,0 @@
-require("jokerhut.ui.edgy")
-require("jokerhut.ui.lualine")
-require("jokerhut.ui.win")
-require("jokerhut.ui.neo-tree")
-require("jokerhut.ui.alpha")
-require("jokerhut.ui.markdown")
-require("jokerhut.ui.toggleterm")

@@ -1,13 +1,13 @@
 vim.o.background = "dark"
-
 vim.o.termguicolors = true
-
 vim.o.cursorline = true
+vim.g.mapleader = " "
 
-require("jokerhut.keymaps")
-require("jokerhut.packer")
-require("jokerhut.set")
-print("hello jokerhut")
+require("config.options")
+require("config.ui")
+require("lazy_setup")
+require("config.colors")
+require("config.keymaps")
 
 vim.g.netrw_keepdir = 0
 
