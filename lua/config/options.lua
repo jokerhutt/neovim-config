@@ -12,15 +12,19 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
+vim.opt.guicursor = "n-v-c:block-Cursor/lCursor"
+vim.api.nvim_set_hl(0, "Cursor", { fg = "black", bg = "white" })
+vim.api.nvim_set_hl(0, "lCursor", { fg = "black", bg = "white" })
+
 vim.opt.wrap = false
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "markdown",
-	callback = function()
-		vim.opt_local.wrap = true
-		vim.opt_local.linebreak = true
-		vim.opt_local.breakindent = true
-	end,
+    pattern = "markdown",
+    callback = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.linebreak = true
+        vim.opt_local.breakindent = true
+    end,
 })
 
 vim.opt.swapfile = false
