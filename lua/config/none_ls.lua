@@ -24,9 +24,9 @@ null_ls.setup({
 
         -- C
         null_ls.builtins.formatting.clang_format.with({
-            filetypes = { "c" },
+            filetypes = { "c", "h" },
             extra_args = {
-                "--style={BasedOnStyle: LLVM, IndentWidth: 4, TabWidth: 4, UseTab: Never, ContinuationIndentWidth: 4, AlignAfterOpenBracket: DontAlign, AlignOperands: false, ColumnLimit: 0}",
+                "--style={BasedOnStyle: LLVM, IndentWidth: 4, TabWidth: 4, UseTab: Never, ContinuationIndentWidth: 4, AlignAfterOpenBracket: DontAlign, AlignOperands: false, ColumnLimit: 120}",
             },
         }),
         null_ls.builtins.diagnostics.cppcheck.with({

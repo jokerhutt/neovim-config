@@ -27,7 +27,7 @@ return {
             stiffness = 0.8,
             trailing_stiffness = 0.5,
             distance_stop_animating = 0.5,
-            cursor_color = "#ffffff"
+            cursor_color = "#ffffff",
         },
     },
 
@@ -342,24 +342,6 @@ return {
 
     -- Mason tools
     { "WhoIsSethDaniel/mason-tool-installer.nvim" },
-
-    {
-        "stevearc/overseer.nvim",
-        commit = "6271cab7ccc4ca840faa93f54440ffae3a3918bd",
-        config = function()
-            require("overseer").setup({
-                strategy = {
-                    "toggleterm",
-                    direction = "horizontal",
-                    open_on_start = true,
-                    close_on_exit = false,
-                },
-                templates = { "builtin" },
-            })
-
-            require("config.overseer") -- 👈 add this
-        end,
-    },
 
     { "MunifTanjim/nui.nvim" },
 

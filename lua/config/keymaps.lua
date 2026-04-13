@@ -1,8 +1,9 @@
--- COLORS -- 
-vim.keymap.set("n", "<leader>cc",require("config.colors").SelectColorscheme, { desc = "Change colorscheme" })
+-- COLORS --
+vim.keymap.set("n", "<leader>cc", require("config.colors").SelectColorscheme, { desc = "Change colorscheme" })
 
 -- NEO-TREE --
-vim.keymap.set("n", "<leader>pv", require("config.neo-tree").toggle, {desc = "Toggle between editor pane and tree pane"})
+vim.keymap.set("n", "<leader>pv", require("config.neo-tree").toggle,
+    { desc = "Toggle between editor pane and tree pane" })
 
 -- SYSTEM CLIPBOARD --
 vim.keymap.set("n", "<leader>p", '"+p', { desc = "Clipboard paste" })
@@ -12,9 +13,6 @@ vim.keymap.set("v", "<leader>y", '"+y', { desc = "Clipboard yank" })
 vim.keymap.set("n", "<leader>Y", '"+Y', { desc = "Clipboard yank line" })
 
 -- TELESCOPE --
-vim.keymap.set("n", "<leader>pf", function()
-  require("telescope.builtin").find_files()
-end)
 
 -- LAZYGIT --
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Open LazyGit" })
@@ -22,34 +20,33 @@ vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "Open LazyGit" })
 -- FUGITIVE --
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Open Fugitive" })
 
-vim.keymap.set("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
+vim.keymap.set("n", "gp", "<cmd>lspsaga peek_definition<cr>")
 vim.keymap.set("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
 vim.keymap.set("n", "gh", "<cmd>Lspsaga hover_doc<CR>")
 
+
+-- TELESCOPE --
+vim.keymap.set("n", "<leader>pf", function()
+    require("telescope.builtin").find_files()
+end, { desc = "Find files" })
+
 vim.keymap.set("n", "<leader>pg", function()
-  require("telescope.builtin").git_files()
-end)
+    require("telescope.builtin").git_files()
+end, { desc = "Grep git files" })
 
 vim.keymap.set("n", "<leader>p/", function()
-  require("telescope.builtin").current_buffer_fuzzy_find()
-end)
+    require("telescope.builtin").current_buffer_fuzzy_find()
+end, { desc = "Grep current file" })
 
 vim.keymap.set("n", "<leader>ps", function()
-  require("telescope.builtin").live_grep()
-end)
-
--- TRANSPARENCY --
-vim.keymap.set("n", "<leader>ut", function()
-  require("config.ui").toggle_transparency()
-end, { desc = "Toggle transparency" })
+    require("telescope.builtin").live_grep()
+end, { desc = "Grep project" })
 
 -- TOGGLES --
 vim.keymap.set("n", "<leader>oe", ":Neotree filesystem toggle left<CR>", { desc = "Toggle Neo-tree (filesystem)" })
-
 vim.keymap.set("n", "<leader>ob", require("config.ui").toggle_transparency, { desc = "Toggle background transparency" })
-
-vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm direction=horizontal<CR>")
-vim.keymap.set("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>")
+vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "Open terminal horizontally" })
+vim.keymap.set("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Open terminal vertically" })
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { silent = true })
 
 -- Diffview: open/close repo diff
@@ -60,4 +57,5 @@ vim.keymap.set("n", "<leader>oh", "<cmd>DiffviewFileHistory %<CR>", { desc = "Fi
 
 -- SNIPPETS --
 
-vim.keymap.set("n", "<leader>mf", require("utils.makefiles").create_make_file, { desc = "Create make file at cursor file" })
+vim.keymap.set("n", "<leader>mf", require("utils.makefiles").create_make_file,
+    { desc = "Create make file at cursor file" })
